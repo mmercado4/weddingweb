@@ -1,0 +1,18 @@
+/*Box sizing Paul Irish*/
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/*General*/
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Courier New", Courier, monospace;
+  background-color: tomato;
+  min-height: 100vh;
+}
