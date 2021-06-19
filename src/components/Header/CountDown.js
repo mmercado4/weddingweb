@@ -1,43 +1,66 @@
 import React, { Fragment, useState, useEffect } from "react";
 
+//Stolen: https://programadorwebvalencia.com/Javascript-cuenta-atras-o-contador-regresivo/
 function CountDown() {
+  const MILLISECONDS_OF_A_SECOND = 1000;
+  const MILLISECONDS_OF_A_MINUTE = MILLISECONDS_OF_A_SECOND * 60;
+  const MILLISECONDS_OF_A_HOUR = MILLISECONDS_OF_A_MINUTE * 60;
+  const MILLISECONDS_OF_A_DAY = MILLISECONDS_OF_A_HOUR * 24;
+
   const [now, setNow] = useState(new Date());
   const [targetDate, setTargetDate] = useState(new Date(2022, 1, 12, 18));
-  const [daysLeft, setDaysLeft] = useState(
-    Math.floor((targetDate - now) / 1000 / 60 / 60 / 24)
+  const [duration, setDuration] = useState(targetDate - now);
+  const [remainingDays, setRemainingDays] = useState(
+    Math.floor(duration / MILLISECONDS_OF_A_DAY)
   );
-  const [hoursLeft, setHoursLeft] = useState(
-    targetDate.getHours() - now.getHours()
+  const [remainingHours, setRemainingHours] = useState(
+    Math.floor((duration % MILLISECONDS_OF_A_DAY) / MILLISECONDS_OF_A_HOUR)
   );
-  const [minutesLeft, setMinutesLeft] = useState(60 - now.getMinutes());
-  const [secondsLeft, setSecondsLeft] = useState(60 - now.getSeconds());
-
-  //let targetDate = new Date(2022, 1, 12, 18); // 12/02/2022
-  //let now = new Date();
-
-  //let daysLeft = Math.floor((targetDate - now) / 1000 / 60 / 60 / 24);
-  //   let hoursLeft = Math.floor(targetDate.getHours() - now.getHours() - 1);
-  //   let minutesLeft = Math.floor(60 - now.getMinutes());
-  //   let secondsLeft = Math.floor(60 - now.getSeconds());
+  const [remainingMinutes, setRemainingMinutes] = useState(
+    Math.floor((duration % MILLISECONDS_OF_A_HOUR) / MILLISECONDS_OF_A_MINUTE)
+  );
+  const [remainingSeconds, setRemainingSeconds] = useState(
+    Math.floor((duration % MILLISECONDS_OF_A_MINUTE) / MILLISECONDS_OF_A_SECOND)
+  );
 
   useEffect(() => {
-    setTimeout(() => {
-      let rightNow = new Date();
-      setNow(rightNow);
-      setDaysLeft(Math.round((targetDate - rightNow) / 1000 / 60 / 60 / 24));
-      setHoursLeft(targetDate.getHours() - rightNow.getHours());
-      setMinutesLeft(60 - rightNow.getMinutes());
-      setSecondsLeft(60 - rightNow.getSeconds());
-    }, 1000);
+    if (duration > 0) {
+      setTimeout(() => {
+        let rightNow = new Date();
+        setNow(rightNow);
+        setDuration(targetDate - rightNow);
+        setRemainingDays(Math.floor(duration / MILLISECONDS_OF_A_DAY));
+        setRemainingHours(
+          Math.floor(
+            (duration % MILLISECONDS_OF_A_DAY) / MILLISECONDS_OF_A_HOUR
+          )
+        );
+        setRemainingMinutes(
+          Math.floor(
+            (duration % MILLISECONDS_OF_A_HOUR) / MILLISECONDS_OF_A_MINUTE
+          )
+        );
+        setRemainingSeconds(
+          Math.floor(
+            (duration % MILLISECONDS_OF_A_MINUTE) / MILLISECONDS_OF_A_SECOND
+          )
+        );
+      }, 1000);
+    }
   });
 
   return (
     <Fragment>
-      <p>{now.getSeconds()}</p>
-      <h3>
-        {daysLeft} días, {hoursLeft} horas, {minutesLeft} minutos, {secondsLeft}{" "}
-        segundos
-      </h3>
+      {duration > 0 ? (
+        <h3>
+          {remainingDays} {remainingDays === 1 ? "día" : "días"},{" "}
+          {remainingHours} {remainingHours === 1 ? "hora" : "horas"},{" "}
+          {remainingMinutes} {remainingMinutes === 1 ? "minuto" : "minutos"},{" "}
+          {remainingSeconds} {remainingSeconds === 1 ? "segundo" : "segundos"}
+        </h3>
+      ) : (
+        <h3>Time to party</h3>
+      )}
     </Fragment>
   );
 }
