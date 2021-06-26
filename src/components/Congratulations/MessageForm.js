@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { HOST, APIPORT } from "../../tools/consts";
+import { sanitizeString } from "../../tools/sanitize";
 
 function MessageForm(props) {
   const [newMessage, setNewMessage] = useState("");
@@ -22,10 +23,9 @@ function MessageForm(props) {
   const sendMessage = () => {
     if (validateMessage()) {
       setValidationErrors("");
-
       let msg = {
-        author: newAuthor,
-        message: newMessage,
+        author: sanitizeString(newAuthor),
+        message: sanitizeString(newMessage),
       };
 
       let opts = {
@@ -49,7 +49,7 @@ function MessageForm(props) {
             setValidationErrors(ERROR_LIST.API_ERROR);
           }
 
-          //ENVIO DE CORREO A LOS NOVIOS!!
+          //ENVIO DE CORREO A LOS NOVIOS!! https://www.npmjs.com/package/email-templates#install
         })
         .catch((err) => console.error(err));
     }
@@ -60,7 +60,7 @@ function MessageForm(props) {
       setValidationErrors(ERROR_LIST.EMPTY_ERROR);
       return false;
     }
-    //SANITIZAR
+
     return true;
   };
 
