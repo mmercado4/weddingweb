@@ -4,15 +4,15 @@ import Guest from "./Guest";
 function Guests() {
   const [assistanceForm, setAssistanceForm] = useState(false);
 
-  const handleClick = () => {
+  const showForm = () => {
     setAssistanceForm(!assistanceForm);
   };
 
   return (
     <Fragment>
       <h2>Invitados</h2>
-      <button onClick={handleClick}>Confirma tu asistencia</button> <br />
-      {assistanceForm ? <Guest /> : true}
+      <button onClick={showForm}>Confirma tu asistencia</button> <br />
+      {assistanceForm ? <Guest showForm={showForm} /> : true}
     </Fragment>
   );
 }
