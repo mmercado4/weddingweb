@@ -8,6 +8,7 @@ function Guest(props) {
   const [companionQty, setCompanionQty] = useState(0);
   const [guestName, setGuestName] = useState("");
   const [guestEmail, setGuestEmail] = useState("");
+  const [guestBus, setGuestBus] = useState(false);
   const [warnings, setWarnings] = useState([]);
 
   const GUEST_WARNINGS = {
@@ -45,12 +46,14 @@ function Guest(props) {
     setCompanions(newCompanionList);
   };
 
+  //Validate guest and add to DB.
   const confirmGuest = () => {
     if (validateGuest()) {
       setWarnings([]);
       let newGuest = {
         name: sanitizeString(guestName),
         email: sanitizeString(guestEmail),
+        bus: guestBus,
         companions: companions,
       };
       let opts = {
@@ -69,6 +72,7 @@ function Guest(props) {
           setGuestName("");
           setCompanions([]);
           setCompanionQty(0);
+          setGuestBus(false);
           props.showForm();
         })
         .catch((error) => console.error(error));
@@ -109,6 +113,8 @@ function Guest(props) {
       setGuestName(e.target.value);
     } else if (e.target.id === "guest-email") {
       setGuestEmail(e.target.value);
+    } else if (e.target.id === "guest-bus") {
+      setGuestBus(e.target.checked);
     }
   };
 
@@ -128,6 +134,13 @@ function Guest(props) {
         name="guest-email"
         id="guest-email"
       ></input>
+      <input
+        type="checkbox"
+        onChange={handleChange}
+        name="guest-bus"
+        id="guest-bus"
+      ></input>
+      <label htmlFor="guest-bus">Bus?</label>
       <button onClick={addField}>Añadir acompañante</button>
       <button onClick={deleteField}>Quitar acompañante</button>
       <br />
