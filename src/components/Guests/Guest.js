@@ -15,6 +15,7 @@ function Guest(props) {
     NAME: "Pendiente indicar el nombre",
     EMAIL: ["Pendiente indicar el email", "No se ha indicado un email"],
     COMPANIONS: "Hay acompañantes pendientes de completar",
+    ALREADY_REGISTER: "Ya has confirmado asistencia",
   };
 
   const addField = () => {
@@ -56,24 +57,37 @@ function Guest(props) {
         bus: guestBus,
         companions: companions,
       };
-      let opts = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newGuest),
-      };
+
       let apiUrl = "/api/guests";
-      fetch(`${HOST}${APIPORT}${apiUrl}`, opts)
+
+      //Check if the email exist.
+      fetch(`${HOST}${APIPORT}${apiUrl}/email/${newGuest.email}`)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
-          setGuestEmail("");
-          setGuestName("");
-          setCompanions([]);
-          setCompanionQty(0);
-          setGuestBus(false);
-          props.showForm();
+          if (data.length > 0) {
+            setWarnings(GUEST_WARNINGS.ALREADY_REGISTER);
+          } else {
+            let opts = {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(newGuest),
+            };
+
+            fetch(`${HOST}${APIPORT}${apiUrl}`, opts)
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data);
+                setGuestEmail("");
+                setGuestName("");
+                setCompanions([]);
+                setCompanionQty(0);
+                setGuestBus(false);
+                props.showForm();
+              })
+              .catch((error) => console.error(error));
+          }
         })
         .catch((error) => console.error(error));
     }
