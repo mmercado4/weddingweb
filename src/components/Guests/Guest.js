@@ -85,6 +85,7 @@ function Guest(props) {
                 setCompanionQty(0);
                 setGuestBus(false);
                 props.showForm();
+                //ENVIAR MAIL AL INVITADO???
               })
               .catch((error) => console.error(error));
           }
