@@ -6,6 +6,7 @@ import Guests from "./Guests";
 export default function Home() {
   return (
     <Fragment>
+      <a href="/admin">Admin</a>
       <Header />
       <Congratulations />
       <Guests />
