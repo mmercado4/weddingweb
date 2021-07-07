@@ -9,7 +9,8 @@ function App() {
     <Fragment>
       <BrowserRouter>
         <Switch>
-          <Route path="/admin" component={Login} />
+          <Route path="/login" component={Login} />
+          <Route path="/admin" component={Admin} />
           <Route path="/" component={Home} />
         </Switch>
       </BrowserRouter>
