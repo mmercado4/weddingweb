@@ -2,16 +2,38 @@ const express = require("express");
 const webpack = require("webpack");
 const webpackDevMiddleware = require("webpack-dev-middleware");
 const webpackConfig = require("./webpack.config");
-const { LOCALPORT } = require("./src/tools/consts");
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
+const { LOCALPORT, SEED_AUTH } = require("./src/tools/constants");
+
 const PORT = process.env.PORT || LOCALPORT;
 
 const app = express();
 
 app.use(webpackDevMiddleware(webpack(webpackConfig)));
 
-app.use(express.static(__dirname + "/public/html", { extensions: ["html"] }));
+app.use(cookieParser());
+
+//Verify if user have token
+const auth = (request, response, next) => {
+  if (!request.url.includes("/admin")) {
+    return next();
+  }
+  jwt.verify(request.cookies.token, SEED_AUTH, (error, data) => {
+    if (error) {
+      response.redirect("/login");
+    } else {
+      next();
+    }
+  });
+};
 
 app.use(express.static(__dirname + "/public"));
+
+app.use(
+  auth,
+  express.static(__dirname + "/public/html", { extensions: ["html"] })
+);
 
 // app.use(
 //     "/",
