@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import Messages from "./Messages";
 import MessageForm from "./MessageForm";
-import { HOST, APIPORT } from "../../tools/consts";
+import { HOST, APIPORT } from "../../tools/constants";
 
 function Congratulations() {
   const [messages, setMessages] = useState([]);

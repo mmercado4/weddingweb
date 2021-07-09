@@ -1,8 +1,8 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { HOST, APIPORT } from "../../../tools/consts";
+import React, { Fragment, useState } from "react";
+import { HOST, APIPORT } from "../../../tools/constants";
 import { sanitizeString } from "../../../tools/sanitize";
 import { Redirect } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 
 export default function Login() {
   const [user, setUser] = useState("");
@@ -49,6 +49,7 @@ export default function Login() {
         credentials: "include", //Include credentials to create token cookie
       };
 
+      //https://blog.logrocket.com/axios-or-fetch-api/
       // axios(opts)
       //   .then((response) => {
       //     console.log(response);
@@ -88,7 +89,7 @@ export default function Login() {
       ></input>
       <input
         onChange={handleChange}
-        type="text"
+        type="password"
         name="login-password"
         id="login-password"
         placeholder="Contraseña"

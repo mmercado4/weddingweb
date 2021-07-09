@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import Companions from "./Companions";
-import { HOST, APIPORT } from "../../tools/consts";
+import { HOST, APIPORT } from "../../tools/constants";
 import { sanitizeString } from "../../tools/sanitize";
 
 function Guest(props) {

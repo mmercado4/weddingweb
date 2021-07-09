@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { HOST, APIPORT } from "../../tools/consts";
+import { HOST, APIPORT } from "../../tools/constants";
 import { sanitizeString } from "../../tools/sanitize";
 
 function MessageForm(props) {
