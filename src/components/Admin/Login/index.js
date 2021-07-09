@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { HOST, APIPORT } from "../../../tools/constants";
 import { sanitizeString } from "../../../tools/sanitize";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 // import axios from "axios";
 
 export default function Login() {
@@ -13,6 +13,7 @@ export default function Login() {
   const LOGIN_WARNINGS = {
     EMPTY_FIELDS: "Usuario/contraseña pendiente",
     LOGIN_SUCCESS: "Usuario logueado correctamente",
+    LOGIN_NOT_SUCCESS: "Usuario/contraseña incorrecta",
   };
 
   const handleChange = (e) => {
@@ -31,7 +32,17 @@ export default function Login() {
     return true;
   };
 
+  const handleKeyDown = (e) => {
+    if (e.code === "Enter" || e.code === "NumpadEnter") {
+      checkLogin();
+    }
+  };
+
   const handleClick = () => {
+    checkLogin();
+  };
+
+  const checkLogin = () => {
     if (validateForm()) {
       setWarning("");
       let urlLogin = "/api/login";
@@ -71,6 +82,9 @@ export default function Login() {
             setTimeout(() => {
               setLogin(true);
             }, 1500);
+          } else {
+            setWarning(LOGIN_WARNINGS.LOGIN_NOT_SUCCESS);
+            setPassword("");
           }
         })
         .catch((error) => console.log(error));
@@ -81,6 +95,7 @@ export default function Login() {
     <Fragment>
       <input
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
         type="text"
         name="login-user"
         id="login-user"
@@ -89,6 +104,7 @@ export default function Login() {
       ></input>
       <input
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
         type="password"
         name="login-password"
         id="login-password"
@@ -97,7 +113,8 @@ export default function Login() {
       ></input>
       <p>{warning}</p>
       <button onClick={handleClick}>Acceder</button>
-
+      <br></br>
+      <Link to="/">Volver</Link>
       {login ? <Redirect to="admin" /> : null}
     </Fragment>
   );
