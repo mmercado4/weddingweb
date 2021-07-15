@@ -46,36 +46,20 @@ export default function List() {
 
   const createListItem = () => {
     let fullList;
-    let fullCompanionList;
     if (list.length > 0) {
       //Check section.
       if (section === "guests") {
         fullList = list.map((item, i) => {
-          let { _id, name, bus, email, companions } = item; //***************TODO NO ME SALEN LOS KEYS CORRECTOS. HACEMOS VARIAS INSERCIONES A LA BASE DE DATOS??? */
-          if (companions.length > 0) {
-            fullCompanionList = companions.map((companion, i) => {
-              return (
-                <p key={`companion-${i}-${item._id}`}>
-                  {companion.companionName}
-                </p>
-              );
-            });
-            return fullCompanionList;
-          }
-          return (
-            <Fragment>
-              <p key={`guest-${i}`}>{name}</p>
-              {fullCompanionList}
-            </Fragment>
-          );
+          //TODO: PONER EN MAYUS LA PRIMERA LETRA Y AÑADIR BUS Y APELLIDO
+          return <p key={`guest-${i}`}>{item.name}</p>;
         });
-        return fullList;
       } else if (section === "messages") {
         //TODO MESSAGES
       }
     } else {
       //Errors or no items.
     }
+    return fullList;
   };
 
   const listItem = createListItem();
