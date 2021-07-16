@@ -45,6 +45,25 @@ export default function List({ section }) {
     setCurrentPage(1);
   };
 
+  const deleteItem = (e) => {
+    const { id } = e.target;
+
+    let deleteUrl = `/api/${section}/${id}`;
+    let opts = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    fetch(`${HOST}${APIPORT}${deleteUrl}`, opts)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        fetchList();
+      })
+      .catch((error) => console.error(error));
+  };
+
   const createListItem = () => {
     let fullList;
     if (list.length > 0) {
@@ -66,11 +85,17 @@ export default function List({ section }) {
         });
       } else if (section === "messages") {
         fullList = list.map((item, i) => {
-          let { author, message } = item;
+          let { _id, author, message } = item;
           return (
-            <p key={`message-${i}`}>
-              {author}: {message}
-            </p>
+            <div key={`message-${i}`}>
+              <p>
+                {author}: {message}
+              </p>
+              <button>Editar</button>
+              <button id={_id} onClick={deleteItem}>
+                Borrar
+              </button>
+            </div>
           );
         });
       }
