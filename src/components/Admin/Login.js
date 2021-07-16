@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
-import { HOST, APIPORT } from "../../../tools/constants";
-import { sanitizeString } from "../../../tools/sanitize";
+import { HOST, APIPORT } from "../../tools/constants";
+import { sanitizeString } from "../../tools/sanitize";
 import { Link, Redirect, BrowserRouter } from "react-router-dom";
 // import axios from "axios";
 
