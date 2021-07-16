@@ -1,9 +1,9 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { HOST, APIPORT } from "../../tools/constants";
+import { capitalize } from "../../tools/capitalize";
 import Pages from "./Pages";
 
-export default function List() {
-  const [section, setSection] = useState("guests");
+export default function List({ section }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState(0);
   const [amount, setAmount] = useState(15);
@@ -13,7 +13,7 @@ export default function List() {
   useEffect(() => {
     fetchPages();
     fetchList();
-  }, [amount, currentPage]);
+  }, [section, currentPage, amount]);
 
   const fetchList = () => {
     const listUrl = `/api/${section}/page/${currentPage}/amount/${amount}`;
@@ -30,7 +30,7 @@ export default function List() {
     fetch(`${HOST}${APIPORT}${pagesUrl}`)
       .then((response) => response.json())
       .then((data) => {
-        let numberOfPages = Math.ceil(data.length / amount); //TODO: No tiene en cuenta en la cantidad los acompañantes.
+        let numberOfPages = Math.ceil(data.length / amount);
         setPages(numberOfPages);
       })
       .catch((err) => console.error(err));
@@ -42,6 +42,7 @@ export default function List() {
 
   const handleSelectChange = (e) => {
     setAmount(parseInt(e.target.value));
+    setCurrentPage(1);
   };
 
   const createListItem = () => {
@@ -50,11 +51,28 @@ export default function List() {
       //Check section.
       if (section === "guests") {
         fullList = list.map((item, i) => {
-          //TODO: PONER EN MAYUS LA PRIMERA LETRA Y AÑADIR BUS Y APELLIDO
-          return <p key={`guest-${i}`}>{item.name}</p>;
+          let { name, surname, bus } = item;
+          if (name) {
+            //Check if name exists. Section change before list, so message list enter in this if condicional.
+            let capName = capitalize(name);
+            let capSurname = capitalize(surname);
+            return (
+              <p key={`guest-${i}`}>
+                {capName} {capSurname}{" "}
+                {bus ? "// quiere bus" : "// no quiere bus"}
+              </p>
+            );
+          }
         });
       } else if (section === "messages") {
-        //TODO MESSAGES
+        fullList = list.map((item, i) => {
+          let { author, message } = item;
+          return (
+            <p key={`message-${i}`}>
+              {author}: {message}
+            </p>
+          );
+        });
       }
     } else {
       //Errors or no items.
@@ -66,7 +84,7 @@ export default function List() {
 
   return (
     <Fragment>
-      <h3>Lista de invitados en Admin</h3>
+      <h3>Lista</h3>
       <div>{listItem}</div>
 
       <Pages pages={pages} changePage={changePage} />
