@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { HOST, APIPORT } from "../../../tools/constants";
 import { sanitizeString } from "../../../tools/sanitize";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, BrowserRouter } from "react-router-dom";
 // import axios from "axios";
 
 export default function Login() {
@@ -114,7 +114,10 @@ export default function Login() {
       <p>{warning}</p>
       <button onClick={handleClick}>Acceder</button>
       <br></br>
-      <Link to="/">Volver</Link>
+      <BrowserRouter>
+        <Link to="/">Volver</Link>
+      </BrowserRouter>
+
       {login ? <Redirect to="admin" /> : null}
     </Fragment>
   );

@@ -1,5 +1,5 @@
 import { rest } from "msw";
-import { HOST, APIPORT } from "../../tools/consts";
+import { HOST, APIPORT } from "../../tools/constants";
 
 const userUrl = "/api/login";
 
