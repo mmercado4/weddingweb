@@ -47,7 +47,7 @@ export default function List({ section }) {
 
   const deleteItem = (e) => {
     const { id } = e.target;
-
+    //TODO: Show confirm message.
     let deleteUrl = `/api/${section}/${id}`;
     let opts = {
       method: "DELETE",
@@ -70,16 +70,22 @@ export default function List({ section }) {
       //Check section.
       if (section === "guests") {
         fullList = list.map((item, i) => {
-          let { name, surname, bus } = item;
+          let { _id, name, surname, bus } = item;
           if (name) {
             //Check if name exists. Section change before list, so message list enter in this if condicional.
             let capName = capitalize(name);
             let capSurname = capitalize(surname);
             return (
-              <p key={`guest-${i}`}>
-                {capName} {capSurname}{" "}
-                {bus ? "// quiere bus" : "// no quiere bus"}
-              </p>
+              <div key={`guest-${i}`}>
+                <p>
+                  {capName} {capSurname}{" "}
+                  {bus ? "// quiere bus" : "// no quiere bus"}
+                </p>
+                <button>Editar</button>
+                <button id={_id} onClick={deleteItem}>
+                  Borrar
+                </button>
+              </div>
             );
           }
         });
