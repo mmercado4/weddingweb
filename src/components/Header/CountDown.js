@@ -8,7 +8,7 @@ function CountDown() {
   const MILLISECONDS_OF_A_DAY = MILLISECONDS_OF_A_HOUR * 24;
 
   const [now, setNow] = useState(new Date());
-  const [targetDate, setTargetDate] = useState(new Date(2022, 1, 12, 18));
+  const [targetDate, setTargetDate] = useState(new Date(2022, 1, 26, 12));
   const [duration, setDuration] = useState(targetDate - now);
   const [remainingDays, setRemainingDays] = useState(
     Math.floor(duration / MILLISECONDS_OF_A_DAY)
