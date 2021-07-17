@@ -27,7 +27,12 @@ export default function Admin() {
     section === "resume" ? (
       <Resume />
     ) : (
-      <List section={section} editItem={editItem} edit={edit} />
+      <List
+        section={section}
+        editItem={editItem}
+        edit={edit}
+        closeEditItem={closeEditItem}
+      />
     );
 
   return (

@@ -4,7 +4,7 @@ import { capitalize } from "../../tools/capitalize";
 import Pages from "./Pages";
 import Edit from "./Edit";
 
-export default function List({ section, edit, editItem }) {
+export default function List({ section, edit, editItem, closeEditItem }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState(0);
   const [amount, setAmount] = useState(15);
@@ -15,7 +15,7 @@ export default function List({ section, edit, editItem }) {
   useEffect(() => {
     fetchPages();
     fetchList();
-  }, [section, currentPage, amount]);
+  }, [section, currentPage, amount, edit]);
 
   const fetchList = () => {
     const listUrl = `/api/${section}/page/${currentPage}/amount/${amount}`;
@@ -120,7 +120,7 @@ export default function List({ section, edit, editItem }) {
   const listItem = createListItem();
 
   if (edit.length > 0) {
-    return <Edit id={edit} />;
+    return <Edit id={edit} section={section} closeEditItem={closeEditItem} />;
   } else {
     return (
       <Fragment>
