@@ -6,14 +6,29 @@ import Resume from "./Resume";
 
 export default function Admin() {
   const [section, setSection] = useState("resume");
+  const [edit, setEdit] = useState("");
 
   const changeSection = (e) => {
     let section = e.target.id.split("-")[1];
     setSection(section);
+    closeEditItem();
+  };
+
+  const editItem = (e) => {
+    let id = e.target.name;
+    setEdit(id);
+  };
+
+  const closeEditItem = () => {
+    setEdit("");
   };
 
   let currentSection =
-    section === "resume" ? <Resume /> : <List section={section} />;
+    section === "resume" ? (
+      <Resume />
+    ) : (
+      <List section={section} editItem={editItem} edit={edit} />
+    );
 
   return (
     <Fragment>

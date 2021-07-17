@@ -2,12 +2,14 @@ import React, { Fragment, useState, useEffect } from "react";
 import { HOST, APIPORT } from "../../tools/constants";
 import { capitalize } from "../../tools/capitalize";
 import Pages from "./Pages";
+import Edit from "./Edit";
 
-export default function List({ section }) {
+export default function List({ section, edit, editItem }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState(0);
   const [amount, setAmount] = useState(15);
   const [list, setList] = useState([]);
+
   const [warnings, setWarnings] = useState(""); //TODO: Use warinngs in case there is no items in list or errors.
 
   useEffect(() => {
@@ -46,7 +48,7 @@ export default function List({ section }) {
   };
 
   const deleteItem = (e) => {
-    const { id } = e.target;
+    const id = e.target.name;
     //TODO: Show confirm message.
     let deleteUrl = `/api/${section}/${id}`;
     let opts = {
@@ -81,8 +83,10 @@ export default function List({ section }) {
                   {capName} {capSurname}{" "}
                   {bus ? "// quiere bus" : "// no quiere bus"}
                 </p>
-                <button>Editar</button>
-                <button id={_id} onClick={deleteItem}>
+                <button name={_id} onClick={editItem}>
+                  Editar
+                </button>
+                <button name={_id} onClick={deleteItem}>
                   Borrar
                 </button>
               </div>
@@ -97,8 +101,10 @@ export default function List({ section }) {
               <p>
                 {author}: {message}
               </p>
-              <button>Editar</button>
-              <button id={_id} onClick={deleteItem}>
+              <button name={_id} onClick={editItem}>
+                Editar
+              </button>
+              <button name={_id} onClick={deleteItem}>
                 Borrar
               </button>
             </div>
@@ -113,17 +119,21 @@ export default function List({ section }) {
 
   const listItem = createListItem();
 
-  return (
-    <Fragment>
-      <h3>Lista</h3>
-      <div>{listItem}</div>
+  if (edit.length > 0) {
+    return <Edit id={edit} />;
+  } else {
+    return (
+      <Fragment>
+        <h3>Lista</h3>
+        <div>{listItem}</div>
 
-      <Pages pages={pages} changePage={changePage} />
-      <select onChange={handleSelectChange}>
-        <option>15</option>
-        <option>30</option>
-        <option>50</option>
-      </select>
-    </Fragment>
-  );
+        <Pages pages={pages} changePage={changePage} />
+        <select onChange={handleSelectChange}>
+          <option>15</option>
+          <option>30</option>
+          <option>50</option>
+        </select>
+      </Fragment>
+    );
+  }
 }
