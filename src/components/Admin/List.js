@@ -97,8 +97,10 @@ export default function List({
             let capSurname = capitalize(surname);
             return (
               <tr key={`guest-${i}`}>
-                <td>{capSurname}</td>
-                <td>{capName}</td>
+                <td>{i + 1}</td>
+                <td>
+                  {capName} {capSurname}
+                </td>
                 <td>{bus ? "SI" : "NO"}</td>
                 <td>
                   <button name={_id} onClick={editItem}>
@@ -114,10 +116,10 @@ export default function List({
         });
       } else if (section === "messages") {
         fullList = list.map((item, i) => {
-          let { _id, author, message, created_at } = item;
+          let { _id, author, message } = item;
           return (
             <tr key={`message-${i}`}>
-              <td>{created_at}</td>
+              <td>{i + 1}</td>
               <td>{author}</td>
               <td>{message}</td>
               <td>
@@ -162,8 +164,8 @@ export default function List({
         <table id="list-table">
           <thead>
             <tr>
-              <th>{section === "messages" ? "Fecha" : "Nombre"}</th>
-              <th>{section === "messages" ? "Autor" : "Apellido"}</th>
+              <th>#</th>
+              <th>{section === "messages" ? "Autor" : "Nombre y Apellido"}</th>
               <th>{section === "messages" ? "Mensaje" : "Autobús"}</th>
               <th>Acciones</th>
             </tr>
