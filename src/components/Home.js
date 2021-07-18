@@ -2,11 +2,13 @@ import React, { Fragment } from "react";
 import Header from "./Header";
 import Congratulations from "./Congratulations";
 import Guests from "./Guests";
+import Countdown from "./Header/CountDown";
 
 export default function Home() {
   return (
     <Fragment>
       <Header />
+      <Countdown />
       <Congratulations />
       <Guests />
       <a

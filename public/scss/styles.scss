@@ -14,7 +14,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: whitesmoke;
+  background-color: white;
   min-height: 100vh;
   text-align: center;
 }
@@ -56,8 +56,12 @@ header {
 
   h1,
   h3 {
-    padding: 15px;
+    padding: 10px;
     margin: 0;
+  }
+
+  h3 {
+    padding-top: 15px;
   }
 }
 
@@ -71,6 +75,70 @@ header {
     h3 {
       font-size: 2.2em;
       padding-top: 30px;
+    }
+  }
+}
+
+/*Countdown*/
+
+.countdown-section {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px 20px;
+
+  h2 {
+    font-size: 3em;
+    margin: 20px;
+  }
+}
+
+.countdown-field {
+  color: $primary-color;
+  flex-basis: 50%;
+  padding: 20px;
+  p {
+    margin: 0;
+  }
+
+  .countdown-time {
+    font-size: 1.8em;
+    font-weight: bold;
+  }
+  .countdown-units {
+    font-size: 1.2em;
+  }
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .countdown-section {
+    flex-wrap: nowrap;
+    padding: 10px 30px;
+  }
+
+  .countdown-field {
+    .countdown-time {
+      font-size: 2.5em;
+    }
+    .countdown-units {
+      font-size: 1.5em;
+    }
+  }
+}
+
+@media (min-width: $breakpoint-laptop) {
+  .countdown-section {
+    padding: 10px 70px;
+  }
+
+  .countdown-field {
+    padding: 20px;
+    .countdown-time {
+      font-size: 3em;
+    }
+    .countdown-units {
+      font-size: 2em;
     }
   }
 }
