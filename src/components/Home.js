@@ -6,7 +6,6 @@ import Guests from "./Guests";
 export default function Home() {
   return (
     <Fragment>
-      <a href="/admin">Admin</a>
       <Header />
       <Congratulations />
       <Guests />
@@ -16,6 +15,7 @@ export default function Home() {
       >
         La estación
       </a>
+      <a href="/admin">Admin</a>
     </Fragment>
   );
 }

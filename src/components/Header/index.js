@@ -1,11 +1,13 @@
-import React, { Fragment } from "react";
+import React from "react";
 import CountDown from "./CountDown";
 
 function Header() {
   return (
-    <Fragment>
-      <CountDown />
-    </Fragment>
+    <header>
+      {/* <CountDown /> */}
+      <h3 className="wedding-date">26.02.22</h3>
+      <h1>Bienvenidos a nuestra web</h1>
+    </header>
   );
 }
 

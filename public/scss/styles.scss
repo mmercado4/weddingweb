@@ -14,9 +14,63 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: $glacial;
-  font-weight: bold;
   background-color: whitesmoke;
   min-height: 100vh;
   text-align: center;
+}
+
+h1 {
+  font-size: 2.8em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+h1,
+h2 {
+  font-weight: lighter;
+  font-family: $moontime;
+}
+
+h3,
+p {
+  font-weight: lighter;
+  font-family: $glacial;
+}
+
+/*Header*/
+
+header {
+  background-image: url("../img/marina&carlos1.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 50vh;
+  filter: grayscale(100%);
+  color: $white;
+
+  h1,
+  h3 {
+    padding: 15px;
+    margin: 0;
+  }
+}
+
+@media (min-width: $breakpoint-tablet) {
+  header {
+    min-height: 100vh;
+
+    h1 {
+      font-size: 6em;
+    }
+    h3 {
+      font-size: 2.2em;
+      padding-top: 30px;
+    }
+  }
 }

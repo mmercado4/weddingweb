@@ -27,3 +27,7 @@ $white: #ffffff;
 $text-color: #000000;
 $moontime: "Moontime", sans-serif;
 $glacial: "Glacial Indifference Regular";
+
+/*Media queries  Stolen: https://css-tricks.com/approaches-media-queries-sass/*/
+$breakpoint-tablet: 768px;
+$breakpoint-laptop: 1100px;
