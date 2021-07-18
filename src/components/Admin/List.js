@@ -4,8 +4,15 @@ import { capitalize } from "../../tools/capitalize";
 import Pages from "./Pages";
 import Edit from "./Edit";
 
-export default function List({ section, edit, editItem, closeEditItem }) {
-  const [currentPage, setCurrentPage] = useState(1);
+export default function List({
+  section,
+  edit,
+  editItem,
+  closeEditItem,
+  currentPage,
+  changePage,
+  resetPage,
+}) {
   const [pages, setPages] = useState(0);
   const [amount, setAmount] = useState(15);
   const [list, setList] = useState([]);
@@ -38,13 +45,9 @@ export default function List({ section, edit, editItem, closeEditItem }) {
       .catch((err) => console.error(err));
   };
 
-  const changePage = (e) => {
-    setCurrentPage(parseInt(e.target.textContent));
-  };
-
   const handleSelectChange = (e) => {
     setAmount(parseInt(e.target.value));
-    setCurrentPage(1);
+    resetPage();
   };
 
   const deleteItem = (e) => {

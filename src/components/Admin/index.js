@@ -7,11 +7,13 @@ import Resume from "./Resume";
 export default function Admin() {
   const [section, setSection] = useState("resume");
   const [edit, setEdit] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const changeSection = (e) => {
     let section = e.target.id.split("-")[1];
     setSection(section);
     closeEditItem();
+    resetPage();
   };
 
   const editItem = (e) => {
@@ -23,6 +25,14 @@ export default function Admin() {
     setEdit("");
   };
 
+  const changePage = (e) => {
+    setCurrentPage(parseInt(e.target.textContent));
+  };
+
+  const resetPage = () => {
+    setCurrentPage(1);
+  };
+
   let currentSection =
     section === "resume" ? (
       <Resume />
@@ -32,6 +42,9 @@ export default function Admin() {
         editItem={editItem}
         edit={edit}
         closeEditItem={closeEditItem}
+        currentPage={currentPage}
+        changePage={changePage}
+        resetPage={resetPage}
       />
     );
 
