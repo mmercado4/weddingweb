@@ -9,6 +9,20 @@ export default function Home() {
     <Fragment>
       <Header />
       <Countdown />
+      <section className="marry-section">
+        <img
+          src="./img/marinacarlos2.jpeg"
+          alt="Marina y Carlos"
+          className="marry-img"
+        />
+        <div className="marry-text">
+          <h2>Nos casamos!</h2>
+          <p>
+            Y queremos que formes parte de este día tan especial para nosotros,
+            porque los mejores momentos en la vida siempre hay que compartirlos.
+          </p>
+        </div>
+      </section>
       <Congratulations />
       <Guests />
       <a

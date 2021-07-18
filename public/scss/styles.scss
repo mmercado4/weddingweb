@@ -20,15 +20,43 @@ body {
 }
 
 h1 {
-  font-size: 2.8em;
+  font-size: 3.1em;
 }
 
 h2 {
-  font-size: 1.5em;
+  font-size: 3em;
 }
 
 h3 {
   font-size: 1.5em;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  h1 {
+    font-size: 5.5em;
+  }
+
+  h2 {
+    font-size: 4.5em;
+  }
+
+  h3 {
+    font-size: 2.5em;
+  }
+}
+
+@media (min-width: $breakpoint-laptop) {
+  h1 {
+    font-size: 6em;
+  }
+
+  h2 {
+    font-size: 5.5em;
+  }
+
+  h3 {
+    font-size: 3em;
+  }
 }
 
 h1,
@@ -50,7 +78,7 @@ header {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 50vh;
+  min-height: 70vh;
   filter: grayscale(100%);
   color: $white;
 
@@ -69,9 +97,6 @@ header {
   header {
     min-height: 100vh;
 
-    h1 {
-      font-size: 6em;
-    }
     h3 {
       font-size: 2.2em;
       padding-top: 30px;
@@ -139,6 +164,100 @@ header {
     }
     .countdown-units {
       font-size: 2em;
+    }
+  }
+}
+
+//We marry
+
+.marry-section {
+  display: flex;
+  flex-direction: column-reverse;
+  background-color: $primary-color;
+
+  .marry-img {
+    filter: grayscale(100%);
+  }
+
+  .marry-text {
+    padding: 20px;
+    margin-bottom: 20px;
+    color: white;
+
+    h2 {
+      padding: 20px 0;
+      margin: 0;
+    }
+    p {
+      margin: 0;
+      padding-bottom: 20px;
+      position: relative;
+    }
+
+    p::after {
+      content: "";
+      position: absolute;
+      bottom: 5px;
+      left: 25%;
+      display: block;
+      width: 50%;
+      height: 1px;
+      background-color: white;
+    }
+  }
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .marry-section {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+
+    .marry-img {
+      flex-basis: 50%;
+      max-width: 50%;
+    }
+
+    .marry-text {
+      flex-basis: 50%;
+      height: 100%;
+      padding-left: 50px;
+
+      padding-right: 50px;
+      h2 {
+        padding-top: 0;
+      }
+      p {
+        text-align: left;
+        padding-top: 10px;
+        font-size: 1.2em;
+      }
+      p::after {
+        left: 0;
+        bottom: -10px;
+      }
+    }
+  }
+}
+
+@media (min-width: $breakpoint-laptop) {
+  .marry-section {
+    .marry-text {
+      padding-left: 80px;
+      padding-right: 80px;
+      h2 {
+        padding-top: 0;
+      }
+      p {
+        text-align: left;
+        padding-top: 10px;
+        font-size: 1.5em;
+      }
+      p::after {
+        left: 0;
+        bottom: -10px;
+      }
     }
   }
 }
