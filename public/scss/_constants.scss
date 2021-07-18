@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "Moontime";
+  src: url("../fonts/moontime/MoonTime-Regular.eot");
+  src: url("../fonts/moontime/MoonTime-Regular.eot") format("embedded-opentype"),
+    url("../fonts/moontime/MoonTime-Regular.woff") format("woff"),
+    url("../fonts/moontime/MoonTime-Regular.ttf") format("truetype"),
+    url("../fonts/moontime/MoonTime-Regular.svg") format("svg");
+}
+
+@font-face {
+  font-family: "Glacial Indifference Regular";
+  src: url("../fonts/glacial-indifference-regular/GlacialIndifference-Regular.eot");
+  src: url("../fonts/glacial-indifference-regular/GlacialIndifference-Regular.eot")
+      format("embedded-opentype"),
+    url("../fonts/glacial-indifference-regular/GlacialIndifference-Regular.woff")
+      format("woff"),
+    url("../fonts/glacial-indifference-regular/GlacialIndifference-Regular.ttf")
+      format("truetype"),
+    url("../fonts/glacial-indifference-regular/GlacialIndifference-Regular.svg")
+      format("svg");
+}
+
+//Constants
+$primary-color: #529da4;
+$secondary-color: #96db7a;
+$white: #ffffff;
+$text-color: #000000;
+$moontime: "Moontime", sans-serif;
+$glacial: "Glacial Indifference Regular";
