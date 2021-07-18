@@ -3,6 +3,7 @@ import { HOST, APIPORT } from "../../tools/constants";
 import { capitalize } from "../../tools/capitalize";
 import Pages from "./Pages";
 import Edit from "./Edit";
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 
 export default function List({
   section,
@@ -17,15 +18,19 @@ export default function List({
   const [amount, setAmount] = useState(15);
   const [list, setList] = useState([]);
 
-  const [warnings, setWarnings] = useState(""); //TODO: Use warinngs in case there is no items in list or errors.
-
   useEffect(() => {
     fetchPages();
     fetchList();
   }, [section, currentPage, amount, edit]);
 
   const fetchList = () => {
-    const listUrl = `/api/${section}/page/${currentPage}/amount/${amount}`;
+    let listUrl;
+    if (amount === "Todos") {
+      listUrl = `/api/${section}`;
+    } else {
+      listUrl = `/api/${section}/page/${currentPage}/amount/${amount}`;
+    }
+
     fetch(`${HOST}${APIPORT}${listUrl}`)
       .then((response) => response.json())
       .then((data) => {
@@ -35,18 +40,28 @@ export default function List({
   };
 
   const fetchPages = () => {
-    const pagesUrl = `/api/${section}`;
-    fetch(`${HOST}${APIPORT}${pagesUrl}`)
-      .then((response) => response.json())
-      .then((data) => {
-        let numberOfPages = Math.ceil(data.length / amount);
-        setPages(numberOfPages);
-      })
-      .catch((err) => console.error(err));
+    if (amount === "Todos") {
+      setPages(1);
+    } else {
+      const pagesUrl = `/api/${section}`;
+      fetch(`${HOST}${APIPORT}${pagesUrl}`)
+        .then((response) => response.json())
+        .then((data) => {
+          let numberOfPages = Math.ceil(data.length / amount);
+          setPages(numberOfPages);
+        })
+        .catch((err) => console.error(err));
+    }
   };
 
   const handleSelectChange = (e) => {
-    setAmount(parseInt(e.target.value));
+    let newAmount;
+    if (e.target.value === "Todos") {
+      newAmount = e.target.value;
+    } else {
+      newAmount = parseInt(e.target.value);
+    }
+    setAmount(newAmount);
     resetPage();
   };
 
@@ -81,41 +96,49 @@ export default function List({
             let capName = capitalize(name);
             let capSurname = capitalize(surname);
             return (
-              <div key={`guest-${i}`}>
-                <p>
-                  {capName} {capSurname}{" "}
-                  {bus ? "// quiere bus" : "// no quiere bus"}
-                </p>
+              <tr key={`guest-${i}`}>
+                <td>{capSurname}</td>
+                <td>{capName}</td>
+                <td>{bus ? "SI" : "NO"}</td>
+                <td>
+                  <button name={_id} onClick={editItem}>
+                    Editar
+                  </button>
+                  <button name={_id} onClick={deleteItem}>
+                    Borrar
+                  </button>
+                </td>
+              </tr>
+            );
+          }
+        });
+      } else if (section === "messages") {
+        fullList = list.map((item, i) => {
+          let { _id, author, message, created_at } = item;
+          return (
+            <tr key={`message-${i}`}>
+              <td>{created_at}</td>
+              <td>{author}</td>
+              <td>{message}</td>
+              <td>
                 <button name={_id} onClick={editItem}>
                   Editar
                 </button>
                 <button name={_id} onClick={deleteItem}>
                   Borrar
                 </button>
-              </div>
-            );
-          }
-        });
-      } else if (section === "messages") {
-        fullList = list.map((item, i) => {
-          let { _id, author, message } = item;
-          return (
-            <div key={`message-${i}`}>
-              <p>
-                {author}: {message}
-              </p>
-              <button name={_id} onClick={editItem}>
-                Editar
-              </button>
-              <button name={_id} onClick={deleteItem}>
-                Borrar
-              </button>
-            </div>
+              </td>
+            </tr>
           );
         });
       }
     } else {
       //Errors or no items.
+      fullList = (
+        <tr>
+          <td>Ha ocurrido un problema. Prueba más tarde</td>
+        </tr>
+      );
     }
     return fullList;
   };
@@ -128,13 +151,31 @@ export default function List({
     return (
       <Fragment>
         <h3>Lista</h3>
-        <div>{listItem}</div>
-
+        <ReactHTMLTableToExcel
+          id="test-table-xls-button"
+          className="download-table-xls-button"
+          table="list-table"
+          filename={section}
+          sheet="tablexls"
+          buttonText="Download as XLS"
+        />
+        <table id="list-table">
+          <thead>
+            <tr>
+              <th>{section === "messages" ? "Fecha" : "Nombre"}</th>
+              <th>{section === "messages" ? "Autor" : "Apellido"}</th>
+              <th>{section === "messages" ? "Mensaje" : "Autobús"}</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>{listItem}</tbody>
+        </table>
         <Pages pages={pages} changePage={changePage} />
         <select onChange={handleSelectChange}>
           <option>15</option>
           <option>30</option>
           <option>50</option>
+          <option>Todos</option>
         </select>
       </Fragment>
     );
