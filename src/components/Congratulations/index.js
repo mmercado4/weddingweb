@@ -5,6 +5,7 @@ import { HOST, APIPORT } from "../../tools/constants";
 
 function Congratulations() {
   const [messages, setMessages] = useState([]);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     fetchMessages();
@@ -26,12 +27,32 @@ function Congratulations() {
       .catch((error) => console.error(error));
   };
 
+  const handleShowForm = () => {
+    setShowForm(!showForm);
+  };
+
+  const getSliderWidth = () => {
+    if (messages.length > 0) {
+      return (messages.length * 100).toString() + "%";
+    }
+    return "100%";
+  };
+
+  let sliderWidth = getSliderWidth();
+
   if (messages.length > 0) {
     return (
-      <Fragment>
-        <Messages messages={messages} />
-        <MessageForm fetchMessages={fetchMessages} />
-      </Fragment>
+      <section className="congratulation">
+        <div className="home-msg-section">
+          <div className="home-msg-slider" style={{ width: sliderWidth }}>
+            <Messages messages={messages} />
+          </div>
+        </div>
+        <button className="msg-showform-btn" onClick={handleShowForm}>
+          Déjanos tu mensaje
+        </button>
+        {showForm ? <MessageForm fetchMessages={fetchMessages} /> : null}
+      </section>
     );
   } else {
     return (

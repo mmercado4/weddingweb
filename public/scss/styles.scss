@@ -261,3 +261,96 @@ header {
     }
   }
 }
+
+//Messages
+
+.congratulation {
+  background-color: $primary-color;
+}
+
+.home-msg-section {
+  overflow: hidden;
+  color: $white;
+  width: 100%;
+  position: relative;
+  min-height: 60vh;
+
+  .home-msg-slider {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    transform: translateY(-50%);
+
+    .home-msg-slide {
+      flex-basis: 100%;
+      padding: 15px;
+
+      .home-msg-text {
+        font-family: $moontime;
+        font-size: 2.5em;
+        font-weight: lighter;
+        margin: 0;
+        padding: 10px 0 25px 0;
+      }
+
+      .home-msg-author {
+        margin: 0;
+        padding: 15px;
+        border-bottom: black 1px solid;
+        display: inline-block;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+.msg-showform-btn {
+  padding: 10px;
+  background-color: $secondary-color;
+  margin: 0 0 25px 0;
+  outline: none;
+  border: none;
+  font-family: $glacial;
+  color: white;
+  font-size: 1em;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .home-msg-section {
+    min-height: 50vh;
+
+    .home-msg-slider {
+      .home-msg-slide {
+        padding: 15px 30px;
+        .home-msg-text {
+          font-size: 3.2em;
+        }
+        .home-msg-author {
+          font-size: 1.3em;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $breakpoint-laptop) {
+  .home-msg-section {
+    min-height: 50vh;
+
+    .home-msg-slider {
+      .home-msg-slide {
+        padding: 15px 60px;
+        .home-msg-text {
+          font-size: 3.8em;
+        }
+        .home-msg-author {
+          font-size: 1.5em;
+        }
+      }
+    }
+  }
+}

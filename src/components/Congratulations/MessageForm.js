@@ -83,7 +83,7 @@ function MessageForm(props) {
           id="message"
           value={newMessage}
           placeholder="Tú mensaje"
-          maxLength="200"
+          maxLength="150"
         ></input>
         <button onClick={sendMessage} id="msg-button">
           Enviar
