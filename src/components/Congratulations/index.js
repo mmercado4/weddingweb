@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, useRef } from "react";
 import Messages from "./Messages";
 import MessageForm from "./MessageForm";
 import { HOST, APIPORT } from "../../tools/constants";
@@ -7,9 +7,32 @@ function Congratulations() {
   const [messages, setMessages] = useState([]);
   const [showForm, setShowForm] = useState(false);
 
+  const slideShow = useRef(null);
+  const interval = useRef(null);
+
+  let count = 0;
+
   useEffect(() => {
     fetchMessages();
   }, []); //To avoid infity loop, set an empty array as second parameter.
+
+  useEffect(() => {
+    if (messages.length > 0) {
+      interval.current = setInterval(() => {
+        nextSlide();
+      }, 5000);
+
+      slideShow.current.addEventListener("mouseenter", () => {
+        clearInterval(interval.current);
+      });
+
+      slideShow.current.addEventListener("mouseleave", () => {
+        interval.current = setInterval(() => {
+          nextSlide();
+        }, 5000);
+      });
+    }
+  }, [messages]);
 
   const fetchMessages = () => {
     let allMessagesUrl = "/api/messages";
@@ -31,23 +54,42 @@ function Congratulations() {
     setShowForm(!showForm);
   };
 
-  const getSliderWidth = () => {
-    if (messages.length > 0) {
-      return (messages.length * 100).toString() + "%";
-    }
-    return "100%";
+  //https://www.youtube.com/watch?v=q00ldTrywLU --> Slide
+
+  const nextSlide = () => {
+    let maxCount = messages.length - 1;
+    slideShow.current.children[count].classList.remove("slide-active");
+    slideShow.current.children[count].classList.add("slide-hide");
+
+    if (count === maxCount) count = 0;
+    else count++;
+
+    slideShow.current.children[count].classList.remove("slide-hide");
+    slideShow.current.children[count].classList.add("slide-active");
   };
 
-  let sliderWidth = getSliderWidth();
+  const previousSlide = () => {
+    let maxCount = messages.length - 1;
+    slideShow.current.children[count].classList.remove("slide-active");
+    slideShow.current.children[count].classList.add("slide-hide");
+
+    if (count === 0) count = maxCount;
+    else count--;
+
+    slideShow.current.children[count].classList.remove("slide-hide");
+    slideShow.current.children[count].classList.add("slide-active");
+  };
 
   if (messages.length > 0) {
     return (
       <section className="congratulation">
         <div className="home-msg-section">
-          <div className="home-msg-slider" style={{ width: sliderWidth }}>
+          <div ref={slideShow} className="home-msg-slider">
             <Messages messages={messages} />
           </div>
         </div>
+        <button onClick={previousSlide}>Anterior</button>
+        <button onClick={nextSlide}>Siguiente</button>
         <button className="msg-showform-btn" onClick={handleShowForm}>
           Déjanos tu mensaje
         </button>

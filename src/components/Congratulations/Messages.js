@@ -2,13 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function Messages({ messages }) {
-  let slideWidth = (100 / messages.length).toString() + "%";
-
   let renderedMessages = messages.map((msg, i) => {
     return (
       <div
-        className={`home-msg-slide slide${i + 1}`}
-        style={{ width: slideWidth }}
+        className={`home-msg-slide ${i === 0 ? "slide-active" : ""}`}
         key={`msg${i}`}
       >
         <p className="home-msg-text">{msg.message}</p>
@@ -16,6 +13,7 @@ function Messages({ messages }) {
       </div>
     );
   });
+
   return renderedMessages;
 }
 
