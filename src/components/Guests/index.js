@@ -9,11 +9,14 @@ function Guests() {
   };
 
   return (
-    <Fragment>
-      <h2>Invitados</h2>
-      <button onClick={showForm}>Confirma tu asistencia</button> <br />
+    <section className="guests-section">
+      <h2>Confirmanos tu asistencia</h2>
+      <button className="guests-form-btn" onClick={showForm}>
+        Confirma
+      </button>{" "}
+      <br />
       {assistanceForm ? <Guest showForm={showForm} /> : true}
-    </Fragment>
+    </section>
   );
 }
 

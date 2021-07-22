@@ -23,7 +23,7 @@ export default function Home() {
           </p>
         </div>
       </section>
-      <Congratulations />
+      {/* <Congratulations /> */}
       <Guests />
       <a
         target="blank"

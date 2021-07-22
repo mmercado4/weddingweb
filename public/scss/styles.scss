@@ -342,6 +342,7 @@ header {
   font-family: $secondary-font;
   color: white;
   font-size: 1em;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 @media (min-width: $breakpoint-tablet) {
@@ -425,5 +426,144 @@ div.arrow {
 
   .arrow-right {
     right: 35px;
+  }
+}
+
+//Guests
+
+.guests-section {
+  min-height: 25vh;
+  padding: 15px;
+
+  h2 {
+    font-family: 2em;
+    margin: 0;
+    padding: 10px 0;
+  }
+
+  .guests-form-btn {
+    background-color: $secondary-color;
+    font-family: $secondary-font;
+    outline: none;
+    padding: 10px;
+    color: white;
+    border: none;
+    font-size: 1em;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: 0px 25px 50px rgba(73, 52, 52, 0.2),
+    0 0 0 1000px rgba($color: white, $alpha: 0.85);
+  width: 85%;
+  height: 300px;
+  padding: 15px;
+  border-radius: 5px;
+  animation: popup-animation 0.5s ease-in forwards;
+}
+
+.guests-form {
+  font-family: $secondary-font;
+
+  .form-fields {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h3 {
+      font-family: $primary-font;
+      margin: 0;
+      font-size: 2em;
+      padding-bottom: 10px;
+    }
+
+    input {
+      font-family: $secondary-font;
+      width: 80%;
+      padding: 5px;
+      margin: 5px;
+      border: none;
+      border-bottom: 1px solid black;
+    }
+
+    .bus-input {
+      margin: 0 auto;
+      margin-top: 15px;
+      width: 80%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      label {
+        flex-basis: 90%;
+        width: 100%;
+      }
+
+      input {
+        flex-basis: 10%;
+      }
+    }
+  }
+}
+
+.guests-warnings {
+  color: red;
+  min-height: 20px;
+  width: 70%;
+  text-align: center;
+  margin: 10px auto;
+}
+
+.guests-confirm-btn,
+.guests-quit-btn {
+  padding: 10px;
+  margin: 0 10px;
+  font-family: $secondary-font;
+  background-color: $secondary-color;
+  color: white;
+  outline: none;
+  border: none;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .popup {
+    width: 50%;
+    height: 300px;
+  }
+
+  .guests-form {
+    .form-fields {
+      h3 {
+        font-size: 2.5em;
+      }
+      .bus-input {
+        width: 50%;
+      }
+    }
+  }
+}
+
+@media (min-width: $breakpoint-laptop) {
+  .popup {
+    width: 40%;
+  }
+}
+
+@keyframes popup-animation {
+  0% {
+    top: 70%;
+    opacity: 0;
+  }
+
+  100% {
+    top: 50%;
+    opacity: 100%;
   }
 }

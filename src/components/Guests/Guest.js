@@ -10,8 +10,9 @@ function Guest(props) {
 
   const GUEST_WARNINGS = {
     NAME: "Pendiente indicar el nombre",
-    SURNAME: ["Pendiente indicar el apellido"],
+    SURNAME: "Pendiente indicar el apellido",
     ALREADY_REGISTER: "Ya has confirmado asistencia",
+    REGISTER_SUCCESS: "Invitado registrado",
   };
 
   //Validate guest and add to DB.
@@ -50,7 +51,8 @@ function Guest(props) {
                 setGuestSurname("");
                 setGuestName("");
                 setGuestBus(false);
-                props.showForm();
+                setWarnings(GUEST_WARNINGS.REGISTER_SUCCESS);
+                setTimeout(props.showForm, 1500);
               })
               .catch((error) => console.error(error));
           }
@@ -88,32 +90,41 @@ function Guest(props) {
   };
 
   return (
-    <Fragment>
-      <input
-        onChange={handleChange}
-        type="text"
-        placeholder="nombre"
-        name="guest-name"
-        id="guest-name"
-      ></input>
-      <input
-        onChange={handleChange}
-        type="text"
-        placeholder="apellido"
-        name="guest-surname"
-        id="guest-surname"
-      ></input>
-      <input
-        type="checkbox"
-        onChange={handleChange}
-        name="guest-bus"
-        id="guest-bus"
-      ></input>
-      <label htmlFor="guest-bus">Bus?</label>
-      <br />
-      <p>{warnings}</p>
-      <button onClick={confirmGuest}>Confirmar</button>
-    </Fragment>
+    <div className="guests-form popup">
+      <div className="form-fields">
+        <h3>Confirma tu asistencia</h3>
+        <input
+          onChange={handleChange}
+          type="text"
+          placeholder="Nombre"
+          name="guest-name"
+          id="guest-name"
+        ></input>
+        <input
+          onChange={handleChange}
+          type="text"
+          placeholder="Apellido"
+          name="guest-surname"
+          id="guest-surname"
+        ></input>
+        <div className="bus-input">
+          <label htmlFor="guest-bus">¿Te llevamos en autobús?</label>
+          <input
+            type="checkbox"
+            onChange={handleChange}
+            name="guest-bus"
+            id="guest-bus"
+          ></input>
+        </div>
+      </div>
+      <p className="guests-warnings">{warnings}</p>
+      <button className="guests-confirm-btn" onClick={confirmGuest}>
+        Confirmar
+      </button>
+      <button className="guests-quit-btn" onClick={props.showForm}>
+        Salir
+      </button>
+    </div>
   );
 }
 
