@@ -62,13 +62,13 @@ h3 {
 h1,
 h2 {
   font-weight: lighter;
-  font-family: $moontime;
+  font-family: $primary-font;
 }
 
 h3,
 p {
   font-weight: lighter;
-  font-family: $glacial;
+  font-family: $secondary-font;
 }
 
 /*Header*/
@@ -269,28 +269,25 @@ header {
 }
 
 .home-msg-section {
-  overflow: hidden;
   color: $white;
   width: 100%;
   position: relative;
-  min-height: 60vh;
 
   .home-msg-slider {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: nowrap;
-    transform: translateY(-50%);
+    position: relative;
+    min-height: 60vh;
 
     .home-msg-slide {
-      flex-basis: 100%;
-      padding: 15px;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      left: 50%;
+      opacity: 0%;
+      width: 100%;
+      padding: 25px;
 
       .home-msg-text {
-        font-family: $moontime;
+        font-family: $primary-font;
         font-size: 2.5em;
         font-weight: lighter;
         margin: 0;
@@ -308,13 +305,41 @@ header {
   }
 }
 
+.slide-active {
+  animation: slide-in 1.5s ease forwards 1.5s !important;
+}
+
+.slide-hide {
+  animation: slide-out 1.5s ease 0s forwards !important;
+}
+
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    opacity: 100%;
+  }
+
+  100% {
+    opacity: 0%;
+  }
+}
+
 .msg-showform-btn {
   padding: 10px;
   background-color: $secondary-color;
   margin: 0 0 25px 0;
   outline: none;
   border: none;
-  font-family: $glacial;
+  font-family: $secondary-font;
   color: white;
   font-size: 1em;
 }
@@ -325,7 +350,7 @@ header {
 
     .home-msg-slider {
       .home-msg-slide {
-        padding: 15px 30px;
+        padding: 15px 40px;
         .home-msg-text {
           font-size: 3.2em;
         }
@@ -352,5 +377,53 @@ header {
         }
       }
     }
+  }
+}
+
+div.arrow {
+  color: white;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.arrow-left {
+  left: 10px;
+}
+
+.arrow-right {
+  right: 10px;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .div.arrow {
+    width: 25px;
+    height: 25px;
+  }
+
+  .arrow-left {
+    left: 25px;
+  }
+
+  .arrow-right {
+    right: 25px;
+  }
+}
+
+@media (min-width: $breakpoint-laptop) {
+  .div.arrow {
+    width: 35px;
+    height: 35px;
+  }
+
+  .arrow-left {
+    left: 35px;
+  }
+
+  .arrow-right {
+    right: 35px;
   }
 }

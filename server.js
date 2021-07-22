@@ -35,10 +35,10 @@ app.use(
   express.static(__dirname + "/public/html", { extensions: ["html"] })
 );
 
-// app.use(
-//     "/",
-//     express.static(__dirname + "/node_modules/@fortawesome/fontawesome-free/")
-//   );
+app.use(
+  "/",
+  express.static(__dirname + "/node_modules/@fortawesome/fontawesome-free/")
+);
 
 app.use((request, response, next) => {
   response.status(404);

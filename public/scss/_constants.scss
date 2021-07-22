@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Kristi&display=swap");
+
 @font-face {
   font-family: "Moontime";
   src: url("../fonts/moontime/MoonTime-Regular.eot");
@@ -25,8 +27,8 @@ $primary-color: #529da4;
 $secondary-color: #96db7a;
 $white: #ffffff;
 $text-color: #000000;
-$moontime: "Moontime", sans-serif;
-$glacial: "Glacial Indifference Regular";
+$primary-font: "Kristi", cursive;
+$secondary-font: "Glacial Indifference Regular";
 
 /*Media queries  Stolen: https://css-tricks.com/approaches-media-queries-sass/*/
 $breakpoint-tablet: 768px;
