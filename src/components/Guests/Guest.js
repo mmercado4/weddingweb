@@ -7,12 +7,13 @@ function Guest(props) {
   const [guestSurname, setGuestSurname] = useState("");
   const [guestBus, setGuestBus] = useState(false);
   const [warnings, setWarnings] = useState([]);
+  const [animation, setAnimation] = useState("popup");
 
   const GUEST_WARNINGS = {
     NAME: "Pendiente indicar el nombre",
     SURNAME: "Pendiente indicar el apellido",
     ALREADY_REGISTER: "Ya has confirmado asistencia",
-    REGISTER_SUCCESS: "Invitado registrado",
+    REGISTER_SUCCESS: "¡Gracias! Nos vemos pronto.",
   };
 
   //Validate guest and add to DB.
@@ -52,7 +53,9 @@ function Guest(props) {
                 setGuestName("");
                 setGuestBus(false);
                 setWarnings(GUEST_WARNINGS.REGISTER_SUCCESS);
-                setTimeout(props.showForm, 1500);
+                setTimeout(() => {
+                  exitForm();
+                }, 1500);
               })
               .catch((error) => console.error(error));
           }
@@ -79,6 +82,13 @@ function Guest(props) {
     }
   };
 
+  const exitForm = () => {
+    setAnimation("popdown");
+    setTimeout(() => {
+      props.showForm();
+    }, 1000);
+  };
+
   const handleChange = (e) => {
     if (e.target.id === "guest-name") {
       setGuestName(e.target.value);
@@ -90,7 +100,7 @@ function Guest(props) {
   };
 
   return (
-    <div className="guests-form popup">
+    <div className={`guests-form ${animation}`}>
       <div className="form-fields">
         <h3>Confirma tu asistencia</h3>
         <input
@@ -118,11 +128,11 @@ function Guest(props) {
         </div>
       </div>
       <p className="guests-warnings">{warnings}</p>
-      <button className="guests-confirm-btn" onClick={confirmGuest}>
+      <button className="guests-confirm-btn btn" onClick={confirmGuest}>
         Confirmar
       </button>
-      <button className="guests-quit-btn" onClick={props.showForm}>
-        Salir
+      <button className="guests-exit-btn btn" onClick={exitForm}>
+        <i className="fas fa-times"></i>
       </button>
     </div>
   );

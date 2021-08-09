@@ -71,6 +71,23 @@ p {
   font-family: $secondary-font;
 }
 
+.btn {
+  cursor: pointer;
+  background-color: $secondary-color;
+  font-family: $secondary-font;
+  outline: none;
+  padding: 10px;
+  color: white;
+  border: none;
+  font-size: 1em;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+  background-color: #7bb664;
+  transition: background-color 0.5s ease;
+}
+
 /*Header*/
 
 header {
@@ -334,15 +351,8 @@ header {
 }
 
 .msg-showform-btn {
-  padding: 10px;
-  background-color: $secondary-color;
   margin: 0 0 25px 0;
-  outline: none;
-  border: none;
-  font-family: $secondary-font;
-  color: white;
   font-size: 1em;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 @media (min-width: $breakpoint-tablet) {
@@ -434,6 +444,7 @@ div.arrow {
 .guests-section {
   min-height: 25vh;
   padding: 15px;
+  margin: 15px 0;
 
   h2 {
     font-family: 2em;
@@ -442,18 +453,12 @@ div.arrow {
   }
 
   .guests-form-btn {
-    background-color: $secondary-color;
-    font-family: $secondary-font;
-    outline: none;
-    padding: 10px;
-    color: white;
-    border: none;
     font-size: 1em;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   }
 }
 
-.popup {
+.guests-form {
+  font-family: $secondary-font;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -465,11 +470,6 @@ div.arrow {
   height: 300px;
   padding: 15px;
   border-radius: 5px;
-  animation: popup-animation 0.5s ease-in forwards;
-}
-
-.guests-form {
-  font-family: $secondary-font;
 
   .form-fields {
     display: flex;
@@ -512,6 +512,14 @@ div.arrow {
   }
 }
 
+.popup {
+  animation: popup-animation 0.5s ease-in forwards;
+}
+
+.popdown {
+  animation: popdown-animation 0.5s ease-in forwards;
+}
+
 .guests-warnings {
   color: red;
   min-height: 20px;
@@ -520,25 +528,27 @@ div.arrow {
   margin: 10px auto;
 }
 
-.guests-confirm-btn,
-.guests-quit-btn {
-  padding: 10px;
-  margin: 0 10px;
-  font-family: $secondary-font;
-  background-color: $secondary-color;
-  color: white;
-  outline: none;
-  border: none;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+.guests-exit-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 5px;
+  background-color: transparent;
+  box-shadow: none;
+
+  i {
+    color: #2b2b2b;
+  }
+}
+
+.guests-exit-btn:hover {
+  background-color: transparent;
 }
 
 @media (min-width: $breakpoint-tablet) {
-  .popup {
+  .guests-form {
     width: 50%;
     height: 300px;
-  }
-
-  .guests-form {
     .form-fields {
       h3 {
         font-size: 2.5em;
@@ -551,7 +561,7 @@ div.arrow {
 }
 
 @media (min-width: $breakpoint-laptop) {
-  .popup {
+  .guests-form {
     width: 40%;
   }
 }
@@ -565,5 +575,16 @@ div.arrow {
   100% {
     top: 50%;
     opacity: 100%;
+  }
+}
+
+@keyframes popdown-animation {
+  0% {
+    top: 50%;
+    opacity: 100%;
+  }
+  100% {
+    top: 70%;
+    opacity: 0;
   }
 }
