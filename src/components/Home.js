@@ -3,6 +3,7 @@ import Header from "./Header";
 import Congratulations from "./Congratulations";
 import Guests from "./Guests";
 import Countdown from "./Header/CountDown";
+import Footer from "./Footer";
 
 export default function Home() {
   return (
@@ -45,12 +46,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <a href="/admin">Admin</a>
-      <p>
-        {`Made with `}
-        <i className="fas fa-heart"></i>
-        {` by M&M`}
-      </p>
+      <Footer />
     </Fragment>
   );
 }

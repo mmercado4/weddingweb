@@ -685,3 +685,58 @@ div.arrow {
     }
   }
 }
+
+//Footer
+
+footer {
+  background-color: $primary-color;
+  min-height: 15vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+
+  .wedding-data {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+    font-family: $secondary-font;
+    margin: 10px 0;
+  }
+
+  p {
+    margin: 0;
+    padding: 15px 0;
+  }
+}
+
+@media (min-width: $breakpoint-tablet) {
+  footer {
+    padding: 0 50px;
+    flex-direction: row;
+
+    .wedding-data {
+      width: 40%;
+      justify-content: space-evenly;
+    }
+
+    .wedding-aux {
+      display: flex;
+      width: 40%;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+  }
+}
+
+@media (min-width: $breakpoint-laptop) {
+  footer {
+    min-height: 10vh;
+  }
+}
