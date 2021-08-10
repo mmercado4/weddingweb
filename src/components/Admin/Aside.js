@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 export default function Aside({ changeSection }) {
   return (
-    <Fragment>
+    <aside className="admin-aside">
       <p onClick={changeSection} id="aside-resume">
         Resumen
       </p>
@@ -12,6 +12,6 @@ export default function Aside({ changeSection }) {
       <p onClick={changeSection} id="aside-guests">
         Invitados
       </p>
-    </Fragment>
+    </aside>
   );
 }

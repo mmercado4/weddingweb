@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React from "react";
 
 function Logout() {
   const handleClick = () => {
@@ -11,9 +11,9 @@ function Logout() {
   };
 
   return (
-    <Fragment>
-      <button onClick={handleClick}>Cerrar sesión</button>
-    </Fragment>
+    <button className="logout-button" onClick={handleClick}>
+      Cerrar sesión
+    </button>
   );
 }
 

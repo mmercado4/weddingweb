@@ -50,8 +50,11 @@ export default function Admin() {
 
   return (
     <Fragment>
-      <h1>Admin</h1>
-      <Logout />
+      <header className="admin-header">
+        <h2>{"M & C"}</h2>
+        <Logout />
+      </header>
+
       <Aside changeSection={changeSection} />
       {currentSection}
     </Fragment>
