@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Header from "./Header";
 import Congratulations from "./Congratulations";
 import Guests from "./Guests";
-import Countdown from "./Header/CountDown";
+import Countdown from "./CountDown";
 import Footer from "./Footer";
 
 export default function Home() {

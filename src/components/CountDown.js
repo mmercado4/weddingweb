@@ -8,8 +8,8 @@ function CountDown() {
   const MILLISECONDS_OF_A_DAY = MILLISECONDS_OF_A_HOUR * 24;
 
   const [now, setNow] = useState(new Date());
-  const [targetDate, setTargetDate] = useState(new Date(2022, 1, 26, 12));
-  //const [targetDate, setTargetDate] = useState(new Date(2021, 6, 18, 18)); //TEST
+  //const [targetDate, setTargetDate] = useState(new Date(2022, 1, 26, 12));
+  const [targetDate, setTargetDate] = useState(new Date(2021, 6, 18, 18)); //TEST
   const [duration, setDuration] = useState(targetDate - now);
   const [remainingDays, setRemainingDays] = useState(
     Math.floor(duration / MILLISECONDS_OF_A_DAY)
@@ -84,7 +84,7 @@ function CountDown() {
     );
   } else {
     return (
-      <section className="countdown-section">
+      <section className="countdown-finish-section">
         <h2>Just Married!</h2>
       </section>
     );
