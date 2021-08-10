@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { HOST, APIPORT } from "../../tools/constants";
 import { sanitizeString } from "../../tools/sanitize";
 import { Link, Redirect, BrowserRouter } from "react-router-dom";
@@ -92,33 +92,41 @@ export default function Login() {
   };
 
   return (
-    <Fragment>
-      <input
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        type="text"
-        name="login-user"
-        id="login-user"
-        placeholder="Usuario"
-        value={user}
-      ></input>
-      <input
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        type="password"
-        name="login-password"
-        id="login-password"
-        placeholder="Contraseña"
-        value={password}
-      ></input>
-      <p>{warning}</p>
-      <button onClick={handleClick}>Acceder</button>
-      <br></br>
-      <BrowserRouter>
-        <Link to="/">Volver</Link>
-      </BrowserRouter>
+    <section className="login-section">
+      <div className="login-form">
+        <h2>Login</h2>
+        <div className="login-fields">
+          <input
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            type="text"
+            name="login-user"
+            id="login-user"
+            placeholder="Usuario"
+            value={user}
+          ></input>
+          <input
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            type="password"
+            name="login-password"
+            id="login-password"
+            placeholder="Contraseña"
+            value={password}
+          ></input>
+          <div className="login-buttons">
+            <button className="btn" onClick={handleClick}>
+              Acceder
+            </button>
+            <a href="/" className="btn">
+              Volver
+            </a>
+          </div>
+          <p>{warning}</p>
+        </div>
 
-      {login ? <Redirect to="admin" /> : null}
-    </Fragment>
+        {login ? <Redirect to="admin" /> : null}
+      </div>
+    </section>
   );
 }
