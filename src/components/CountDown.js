@@ -83,11 +83,12 @@ function CountDown() {
       </section>
     );
   } else {
-    return (
-      <section className="countdown-finish-section">
-        <h2>Just Married!</h2>
-      </section>
-    );
+    return null;
+    // return (
+    //   <section className="countdown-section">
+    //     <h2>Gracias por ser parte de este día</h2>
+    //   </section>
+    // );
   }
 }
 

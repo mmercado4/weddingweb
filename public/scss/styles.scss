@@ -122,6 +122,52 @@ header.web-header {
   }
 }
 
+.neon {
+  color: #0e3742;
+  letter-spacing: 8px;
+  line-height: 1em;
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 4em;
+  font-weight: bold;
+  animation: tubelight 5s linear infinite;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .neon {
+    font-size: 7em;
+  }
+}
+
+@keyframes tubelight {
+  0%,
+  18%,
+  20%,
+  50.1%,
+  60%,
+  65.1%,
+  80%,
+  90.1%,
+  92% {
+    color: #9c9c9c;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  }
+  18.1%,
+  20.1%,
+  30%,
+  50%,
+  60.1%,
+  65%,
+  80.1%,
+  90%,
+  92.1%,
+  100% {
+    color: #f3f3f3;
+    text-shadow: 0 0 10px #f3f3f3, 0 0 20px #f3f3f3, 0 0 40px #f3f3f3,
+      0 0 80px #f3f3f3, 0 0 160px #f3f3f3;
+  }
+}
+
 /*Countdown*/
 
 .countdown-section {
@@ -186,59 +232,11 @@ header.web-header {
   }
 }
 
-.countdown-finish-section {
-  background-color: #07252d;
-  height: 30vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  h2 {
-    color: #0e3742;
-    letter-spacing: 8px;
-    line-height: 1em;
-    margin: 0;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: bold;
-    animation: tubelight 5s linear infinite;
-  }
-}
-
 @media (min-width: $breakpoint-tablet) {
   .countdown-finish-section {
     h2 {
       font-size: 6em;
     }
-  }
-}
-
-@keyframes tubelight {
-  0%,
-  18%,
-  20%,
-  50.1%,
-  60%,
-  65.1%,
-  80%,
-  90.1%,
-  92% {
-    color: #0e3742;
-    text-shadow: none;
-  }
-  18.1%,
-  20.1%,
-  30%,
-  50%,
-  60.1%,
-  65%,
-  80.1%,
-  90%,
-  92.1%,
-  100% {
-    color: #fff;
-    text-shadow: 0 0 10px $primary-color, 0 0 20px $primary-color,
-      0 0 40px $primary-color, 0 0 80px $primary-color, 0 0 160px $primary-color;
   }
 }
 
