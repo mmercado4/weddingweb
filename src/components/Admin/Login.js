@@ -12,7 +12,7 @@ export default function Login() {
 
   const LOGIN_WARNINGS = {
     EMPTY_FIELDS: "Usuario/contraseña pendiente",
-    LOGIN_SUCCESS: "Usuario logueado correctamente",
+    LOGIN_SUCCESS: "Bingo!",
     LOGIN_NOT_SUCCESS: "Usuario/contraseña incorrecta",
   };
 

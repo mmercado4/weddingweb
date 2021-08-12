@@ -66,7 +66,7 @@ export default function List({
   };
 
   const deleteItem = (e) => {
-    const id = e.target.name;
+    const id = e.target.parentNode.name;
     //TODO: Show confirm message.
     let deleteUrl = `/api/${section}/${id}`;
     let opts = {
@@ -104,10 +104,10 @@ export default function List({
                 <td>{bus ? "SI" : "NO"}</td>
                 <td>
                   <button name={_id} onClick={editItem}>
-                    Editar
+                    <i className="fas fa-marker"></i>
                   </button>
                   <button name={_id} onClick={deleteItem}>
-                    Borrar
+                    <i className="fas fa-trash"></i>
                   </button>
                 </td>
               </tr>
@@ -124,10 +124,10 @@ export default function List({
               <td>{message}</td>
               <td>
                 <button name={_id} onClick={editItem}>
-                  Editar
+                  <i className="fas fa-marker"></i>
                 </button>
                 <button name={_id} onClick={deleteItem}>
-                  Borrar
+                  <i className="fas fa-trash"></i>
                 </button>
               </td>
             </tr>
@@ -152,21 +152,21 @@ export default function List({
   } else {
     return (
       <Fragment>
-        <h3>Lista</h3>
+        <h3>{section === "messages" ? "Mensajes" : "Invitados"}</h3>
         <ReactHTMLTableToExcel
-          id="test-table-xls-button"
+          id="table-xls-button"
           className="download-table-xls-button"
           table="list-table"
           filename={section}
           sheet="tablexls"
-          buttonText="Download as XLS"
+          buttonText="Descargar como XLS"
         />
         <table id="list-table">
           <thead>
             <tr>
               <th>#</th>
               <th>{section === "messages" ? "Autor" : "Nombre y Apellido"}</th>
-              <th>{section === "messages" ? "Mensaje" : "Autobús"}</th>
+              <th>{section === "messages" ? "Mensaje" : "Bus"}</th>
               <th>Acciones</th>
             </tr>
           </thead>

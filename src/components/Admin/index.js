@@ -17,7 +17,7 @@ export default function Admin() {
   };
 
   const editItem = (e) => {
-    let id = e.target.name;
+    let id = e.target.parentNode.name;
     setEdit(id);
   };
 
@@ -51,7 +51,9 @@ export default function Admin() {
   return (
     <Fragment>
       <header className="admin-header">
-        <h2>{"M & C"}</h2>
+        <h2>
+          <a href="/">{"M & C"}</a>
+        </h2>
         <Logout />
       </header>
 

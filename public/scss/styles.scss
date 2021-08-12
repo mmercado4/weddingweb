@@ -92,23 +92,36 @@ p {
 /*Header*/
 
 header.web-header {
-  background-image: url("../img/marina&carlos1.jpeg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  position: relative;
   min-height: 70vh;
-  filter: grayscale(100%);
-  color: $white;
 
   h1,
   h3 {
     padding: 10px;
     margin: 0;
+    position: relative;
+    z-index: 10;
   }
 
   h3 {
     padding-top: 15px;
+    color: white;
   }
+}
+
+header.web-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/marina&carlos1.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: grayscale(100%);
+  z-index: 1;
 }
 
 @media (min-width: $breakpoint-tablet) {
@@ -123,13 +136,11 @@ header.web-header {
 }
 
 .neon {
-  color: #0e3742;
+  color: #ff005b;
   letter-spacing: 8px;
   line-height: 1em;
   margin: 0;
-  text-transform: uppercase;
-  font-size: 4em;
-  font-weight: bold;
+  font-size: 3em;
   animation: tubelight 5s linear infinite;
 }
 
@@ -149,7 +160,7 @@ header.web-header {
   80%,
   90.1%,
   92% {
-    color: #9c9c9c;
+    color: #f3f3f3;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
   }
   18.1%,
@@ -162,9 +173,9 @@ header.web-header {
   90%,
   92.1%,
   100% {
-    color: #f3f3f3;
-    text-shadow: 0 0 10px #f3f3f3, 0 0 20px #f3f3f3, 0 0 40px #f3f3f3,
-      0 0 80px #f3f3f3, 0 0 160px #f3f3f3;
+    color: #ff005b;
+    text-shadow: 0 0 10px #ff005b, 0 0 20px #ff005b, 0 0 40px #ff005b,
+      0 0 80px #ff005b, 0 0 160px #ff005b;
   }
 }
 
@@ -956,6 +967,11 @@ header.admin-header {
     font-family: $secondary-font;
     font-size: 2em;
     font-weight: bold;
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
   }
   .logout-button {
     position: absolute;
@@ -1016,6 +1032,81 @@ header.admin-header {
     p:hover {
       font-weight: bold;
       transition: all 0.5s ease;
+    }
+  }
+}
+
+//Admin List table
+
+#list-table {
+  width: 90%;
+  margin: 0 auto;
+  font-family: $secondary-font;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+
+  thead tr th {
+    border-bottom: 1px solid black;
+    padding: 10px 0;
+  }
+
+  tbody tr {
+    td {
+      border-bottom: 1px solid black;
+      padding: 10px 0;
+      width: 25%;
+      font-size: 0.8em;
+
+      button {
+        outline: none;
+        border: none;
+        margin: 0 10px;
+        cursor: pointer;
+        padding: 0;
+
+        i {
+          font-size: 1.2em;
+          position: relative;
+        }
+      }
+    }
+  }
+
+  td:first-child {
+    width: 10%;
+  }
+
+  td:nth-child(4) {
+    width: 20%;
+  }
+}
+
+#table-xls-button {
+  background-color: transparent;
+  font-family: $secondary-font;
+  outline: none;
+  border: 1px solid black;
+  padding: 5px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-size: 1em;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: $breakpoint-tablet) {
+  #list-table {
+    width: 70%;
+
+    tbody tr {
+      td {
+        font-size: 1em;
+
+        button {
+          i {
+            font-size: 1.4em;
+          }
+        }
+      }
     }
   }
 }
