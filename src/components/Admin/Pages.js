@@ -13,5 +13,5 @@ export default function Pages(props) {
       </p>
     );
   });
-  return <Fragment>{pagesComponent}</Fragment>;
+  return <div className="list-pages">{pagesComponent}</div>;
 }

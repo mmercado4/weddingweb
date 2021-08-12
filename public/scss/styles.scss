@@ -1110,3 +1110,26 @@ header.admin-header {
     }
   }
 }
+
+//Pages
+
+.list-pages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  p {
+    display: block;
+    border: 1px solid black;
+    padding: 5px;
+    width: 30px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: all 1s ease;
+  }
+
+  p:hover {
+    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.4);
+    transition: all 1s ease;
+  }
+}
