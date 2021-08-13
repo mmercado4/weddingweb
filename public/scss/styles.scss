@@ -1133,3 +1133,57 @@ header.admin-header {
     transition: all 1s ease;
   }
 }
+
+// Select amount
+
+.select-amount {
+  font-family: $secondary-font;
+  border: 1px solid black;
+  width: 50px;
+  text-align: center;
+}
+
+.admin-footer {
+  margin-top: 20px;
+  width: 100%;
+  height: 20px;
+  color: white;
+  height: 8vh;
+  background-color: $primary-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+//Resume section
+
+.resume-section {
+  min-height: 70vh;
+
+  .resume-data {
+    p {
+      font-size: 2em;
+      span {
+        font-size: 3em;
+      }
+    }
+  }
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .resume-section {
+    width: 80%;
+    margin: 0 auto;
+    .resume-data {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      p {
+        font-size: 3em;
+        span {
+          font-size: 4em;
+        }
+      }
+    }
+  }
+}

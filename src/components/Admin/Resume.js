@@ -37,11 +37,23 @@ export default function Resume() {
     }, 0);
 
   return (
-    <Fragment>
+    <section className="resume-section">
       <h3>Resumen</h3>
-      <p>{countMessages} mensajes</p>
-      <p>{countGuests} invitados confirmados</p>
-      <p>{countBus} invitados con autobús</p>
-    </Fragment>
+      <div className="resume-data">
+        <p>
+          <span>{countGuests}</span> <br />
+          invitados
+        </p>
+        <p>
+          <span>{countBus}</span> <br />
+          autobús
+        </p>
+        <p>
+          <span>{countMessages}</span>
+          <br />
+          mensajes
+        </p>
+      </div>
+    </section>
   );
 }

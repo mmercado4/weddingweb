@@ -173,7 +173,7 @@ export default function List({
           <tbody>{listItem}</tbody>
         </table>
         <Pages pages={pages} changePage={changePage} />
-        <select onChange={handleSelectChange}>
+        <select className="select-amount" onChange={handleSelectChange}>
           <option>15</option>
           <option>30</option>
           <option>50</option>

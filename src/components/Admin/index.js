@@ -59,6 +59,13 @@ export default function Admin() {
 
       <Aside changeSection={changeSection} />
       {currentSection}
+      <div className="admin-footer">
+        <p>
+          {`Made with `}
+          <i className="fas fa-heart"></i>
+          {` by M&M`}
+        </p>
+      </div>
     </Fragment>
   );
 }
