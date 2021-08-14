@@ -138,7 +138,7 @@ export default function List({
       //Errors or no items.
       fullList = (
         <tr>
-          <td>Ha ocurrido un problema. Prueba más tarde</td>
+          <td colSpan="4">Ha ocurrido un problema. Prueba más tarde</td>
         </tr>
       );
     }

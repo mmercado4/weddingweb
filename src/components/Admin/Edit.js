@@ -91,53 +91,63 @@ export default function Edit({ id, section, closeEditItem }) {
         let { author, message } = item;
         return (
           <Fragment>
-            <label htmlFor="edit-author">Autor</label>
-            <input
-              type="text"
-              id="edit-author"
-              name="edit-author"
-              onChange={handleChange}
-              defaultValue={author}
-            ></input>
-            <label htmlFor="edit-message">Mensaje</label>
-            <textarea
-              rows="4"
-              cols="50"
-              id="edit-message"
-              name="edit-message"
-              onChange={handleChange}
-              defaultValue={message}
-            ></textarea>
+            <div className="edit-form-field">
+              <label htmlFor="edit-author">Autor</label>
+              <input
+                type="text"
+                id="edit-author"
+                name="edit-author"
+                onChange={handleChange}
+                defaultValue={author}
+              ></input>
+            </div>
+            <div className="edit-form-field text-message">
+              <label htmlFor="edit-message">Mensaje</label>
+              <textarea
+                rows="4"
+                cols="50"
+                id="edit-message"
+                name="edit-message"
+                onChange={handleChange}
+                defaultValue={message}
+              ></textarea>
+            </div>
           </Fragment>
         );
       } else {
         let { name, surname, bus } = item;
         return (
           <Fragment>
-            <label htmlFor="edit-name">Nombre</label>
-            <input
-              type="text"
-              id="edit-name"
-              name="edit-name"
-              onChange={handleChange}
-              defaultValue={name}
-            ></input>
-            <label htmlFor="edit-surname">Apellido</label>
-            <input
-              type="text"
-              id="edit-surname"
-              name="edit-surname"
-              onChange={handleChange}
-              defaultValue={surname}
-            ></input>
-            <label htmlFor="edit-bus">Bus</label>
-            <input
-              type="checkbox"
-              id="edit-bus"
-              name="edit-bus"
-              defaultChecked={bus}
-              onChange={handleChange}
-            ></input>
+            <div className="edit-form-field">
+              <label htmlFor="edit-name">Nombre</label>
+              <input
+                type="text"
+                id="edit-name"
+                name="edit-name"
+                onChange={handleChange}
+                defaultValue={name}
+              ></input>
+            </div>
+            <div className="edit-form-field">
+              <label htmlFor="edit-surname">Apellido</label>
+              <input
+                type="text"
+                id="edit-surname"
+                name="edit-surname"
+                onChange={handleChange}
+                defaultValue={surname}
+              ></input>
+            </div>
+            <div className="edit-form-field">
+              <label htmlFor="edit-bus">Bus</label>
+              <input
+                type="checkbox"
+                id="edit-bus"
+                name="edit-bus"
+                defaultChecked={bus}
+                onChange={handleChange}
+              ></input>
+            </div>
           </Fragment>
         );
       }
@@ -147,12 +157,14 @@ export default function Edit({ id, section, closeEditItem }) {
   let editForm = createForm();
 
   return (
-    <Fragment>
-      <h2>EDITAR</h2>
-      {editForm}
+    <section className="edit-data-section">
+      <h3>Editar</h3>
+      <div className="edit-form">{editForm}</div>
       <br />
+      <button className="btn" onClick={saveChanges}>
+        Guardar
+      </button>
       <p>{warning}</p>
-      <button onClick={saveChanges}>Guardar</button>
-    </Fragment>
+    </section>
   );
 }

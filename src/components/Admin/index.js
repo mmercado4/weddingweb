@@ -56,9 +56,8 @@ export default function Admin() {
         </h2>
         <Logout />
       </header>
-
       <Aside changeSection={changeSection} />
-      {currentSection}
+      <main className="admin-main-content">{currentSection}</main>
       <div className="admin-footer">
         <p>
           {`Made with `}
