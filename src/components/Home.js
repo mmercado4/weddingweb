@@ -25,7 +25,7 @@ export default function Home() {
         </div>
       </section>
       <Guests />
-      {/* <Congratulations /> */}
+      <Congratulations />
       <section className="wedding-state-section">
         <div className="wedding-state-img">
           <img src="./img/railway.jpg" alt="Finca la Estación" />

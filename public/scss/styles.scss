@@ -103,6 +103,10 @@ header.web-header {
     z-index: 10;
   }
 
+  h1 {
+    color: white;
+  }
+
   h3 {
     padding-top: 15px;
     color: white;
@@ -522,7 +526,7 @@ div.arrow {
   }
 }
 
-.guests-form {
+.popup-form {
   font-family: $secondary-font;
   position: fixed;
   top: 50%;
@@ -617,7 +621,7 @@ div.arrow {
 }
 
 @media (min-width: $breakpoint-tablet) {
-  .guests-form {
+  .popup-form {
     width: 50%;
     height: 300px;
     .form-fields {
@@ -632,7 +636,7 @@ div.arrow {
 }
 
 @media (min-width: $breakpoint-laptop) {
-  .guests-form {
+  .popup-form {
     width: 40%;
   }
 }

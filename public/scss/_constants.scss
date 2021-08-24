@@ -22,12 +22,22 @@
       format("svg");
 }
 
+@font-face {
+  font-family: "Magnum";
+  src: url("../fonts/magnum/Magnum.eot");
+  src: url("../fonts/magnum/Magnum.eot") format("embedded-opentype"),
+    url("../fonts/magnum/Magnum.woff") format("woff"),
+    url("../fonts/magnum/Magnum.ttf") format("truetype"),
+    url("../fonts/magnum/Magnum.svg") format("svg");
+}
+
 //Constants
 $primary-color: #529da4;
 $secondary-color: #96db7a;
 $white: #ffffff;
 $text-color: #000000;
-$primary-font: "Kristi", cursive;
+$primary-font: "Magnum";
+//$primary-font: "Kristi", cursive;
 $secondary-font: "Glacial Indifference Regular";
 
 /*Media queries  Stolen: https://css-tricks.com/approaches-media-queries-sass/*/

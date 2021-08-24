@@ -1,8 +1,8 @@
 import React from "react";
 
 function Header() {
-  //const weddingDate = new Date(2022, 1, 26, 12);
-  const weddingDate = new Date(2021, 6, 18, 18); //TEST
+  const weddingDate = new Date(2022, 1, 26, 12);
+  //const weddingDate = new Date(2021, 6, 18, 18); //TEST
   let head;
 
   const checkTime = () => {

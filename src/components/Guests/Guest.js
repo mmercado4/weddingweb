@@ -100,7 +100,7 @@ function Guest(props) {
   };
 
   return (
-    <div className={`guests-form ${animation}`}>
+    <div className={`popup-form ${animation}`}>
       <div className="form-fields">
         <h3>Confirma tu asistencia</h3>
         <input
