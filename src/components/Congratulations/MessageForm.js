@@ -1,8 +1,8 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { HOST, APIPORT } from "../../tools/constants";
 import { sanitizeString } from "../../tools/sanitize";
 
-function MessageForm(props) {
+function MessageForm() {
   const [newMessage, setNewMessage] = useState("");
   const [newAuthor, setNewAuthor] = useState("");
   const [validationErrors, setValidationErrors] = useState("");
@@ -42,14 +42,13 @@ function MessageForm(props) {
         .then((data) => {
           console.log(data);
           if (data.success) {
-            props.fetchMessages();
+            //refreshMessages(); I don´t refresh messages because it duplicates the interval. Don´t know to solve this.
             setNewAuthor("");
             setNewMessage("");
           } else {
             setValidationErrors(ERROR_LIST.API_ERROR);
           }
-
-          //ENVIO DE CORREO A LOS NOVIOS!! https://www.npmjs.com/package/email-templates#install
+          //TODO: send email to the couple https://www.npmjs.com/package/email-templates#install
         })
         .catch((err) => console.error(err));
     }
@@ -60,37 +59,34 @@ function MessageForm(props) {
       setValidationErrors(ERROR_LIST.EMPTY_ERROR);
       return false;
     }
-
     return true;
   };
 
   return (
-    <Fragment>
-      <div>
-        <input
-          onChange={handleChanges}
-          type="text"
-          name="author"
-          id="author"
-          value={newAuthor}
-          placeholder="Autor"
-          maxLength="30"
-        ></input>
-        <input
-          onChange={handleChanges}
-          type="text"
-          name="message"
-          id="message"
-          value={newMessage}
-          placeholder="Tú mensaje"
-          maxLength="150"
-        ></input>
-        <button onClick={sendMessage} id="msg-button">
-          Enviar
-        </button>
-        <p>{validationErrors}</p>
-      </div>
-    </Fragment>
+    <div className="popup-form popup">
+      <input
+        onChange={handleChanges}
+        type="text"
+        name="author"
+        id="author"
+        value={newAuthor}
+        placeholder="Autor"
+        maxLength="30"
+      ></input>
+      <input
+        onChange={handleChanges}
+        type="text"
+        name="message"
+        id="message"
+        value={newMessage}
+        placeholder="Tú mensaje"
+        maxLength="150"
+      ></input>
+      <button onClick={sendMessage} id="msg-button">
+        Enviar
+      </button>
+      <p>{validationErrors}</p>
+    </div>
   );
 }
 

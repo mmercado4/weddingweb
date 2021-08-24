@@ -7,27 +7,21 @@ import "../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 function Congratulations() {
   const [messages, setMessages] = useState([]);
   const [showForm, setShowForm] = useState(false);
-  const [index, setIndex] = useState(1);
 
   const slideShow = useRef(null);
   const interval = useRef(null);
-
-  let count = 0; //Cuando se envía mensaje se pone esto a 0 y puede darse que haya dos activados.
 
   useEffect(() => {
     fetchMessages();
   }, []); //To avoid infity loop, set an empty array as second parameter.
 
   useEffect(() => {
-    if (messages.length > 0) {
-      //slideShow.current.children.classList.remove("slide-active"); //LO MISMO PODEMOS HACER ALGO ASÍ??
+    clearInterval(interval.current); //Clear interval to avoid several intervals at the same time.
 
+    if (messages.length > 0) {
       interval.current = setInterval(() => {
-        console.log("ponemos interval");
-        setIndex((index) => index + 1);
-        console.log(index);
-        //nextSlide();
-      }, 4000);
+        nextSlide();
+      }, 5000);
 
       slideShow.current.addEventListener("mouseenter", () => {
         console.log("quitamos interval");
@@ -38,7 +32,7 @@ function Congratulations() {
         console.log("ponemosinterval");
         interval.current = setInterval(() => {
           nextSlide();
-        }, 4000);
+        }, 5000);
       });
     }
   }, [messages]);
@@ -63,32 +57,40 @@ function Congratulations() {
     setShowForm(!showForm);
   };
 
-  //https://www.youtube.com/watch?v=q00ldTrywLU --> Slide
+  //https://www.youtube.com/watch?v=q00ldTrywLU --> Slide - Carousel
 
   const nextSlide = () => {
-    console.log(index);
-    let newIndex = messages.length - 1 === index ? 0 : index + 1;
-    console.log(newIndex);
-    setIndex(newIndex);
-    // let maxCount = messages.length - 1;
-    // slideShow.current.children[count].classList.remove("slide-active");
-    // slideShow.current.children[count].classList.add("slide-hide");
-    // if (count === maxCount) count = 0;
-    // else count++;
-    // slideShow.current.children[count].classList.remove("slide-hide");
-    // slideShow.current.children[count].classList.add("slide-active");
+    let list = slideShow.current.childNodes;
+    let nextIndex;
+    list.forEach((item, i) => {
+      if (item.classList.contains("slide-active")) {
+        item.classList.replace("slide-active", "slide-hide");
+        let previousIndex = i;
+        let maxCount = messages.length - 1;
+        previousIndex === maxCount
+          ? (nextIndex = 0)
+          : (nextIndex = previousIndex + 1);
+      }
+    });
+    list[nextIndex].classList.remove("slide-hide");
+    list[nextIndex].classList.add("slide-active");
   };
 
   const previousSlide = () => {
-    let maxCount = messages.length - 1;
-    slideShow.current.children[count].classList.remove("slide-active");
-    slideShow.current.children[count].classList.add("slide-hide");
-
-    if (count === 0) count = maxCount;
-    else count--;
-
-    slideShow.current.children[count].classList.remove("slide-hide");
-    slideShow.current.children[count].classList.add("slide-active");
+    let list = slideShow.current.childNodes;
+    let nextIndex;
+    list.forEach((item, i) => {
+      if (item.classList.contains("slide-active")) {
+        item.classList.replace("slide-active", "slide-hide");
+        let previousIndex = i;
+        let maxCount = messages.length - 1;
+        previousIndex === 0
+          ? (nextIndex = maxCount)
+          : (nextIndex = previousIndex - 1);
+      }
+    });
+    list[nextIndex].classList.remove("slide-hide");
+    list[nextIndex].classList.add("slide-active");
   };
 
   if (messages.length > 0) {
@@ -106,17 +108,17 @@ function Congratulations() {
           </div>
         </div>
 
-        <button className="msg-showform-btn" onClick={handleShowForm}>
+        <button className="msg-showform-btn btn" onClick={handleShowForm}>
           Déjanos tu mensaje
         </button>
-        {showForm ? <MessageForm fetchMessages={fetchMessages} /> : null}
+        {showForm ? <MessageForm /> : null}
       </section>
     );
   } else {
     return (
-      <Fragment>
-        <h2>Congratulations</h2>
-      </Fragment>
+      <section className="congratulation">
+        <h2>Envíanos tus mensajes</h2>
+      </section>
     );
   }
 }
