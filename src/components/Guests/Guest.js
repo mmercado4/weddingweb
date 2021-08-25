@@ -55,7 +55,7 @@ function Guest(props) {
                 setWarnings(GUEST_WARNINGS.REGISTER_SUCCESS);
                 setTimeout(() => {
                   exitForm();
-                }, 1500);
+                }, 1000);
               })
               .catch((error) => console.error(error));
           }

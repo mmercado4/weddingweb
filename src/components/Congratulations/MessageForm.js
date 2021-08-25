@@ -93,8 +93,8 @@ function MessageForm({ handleShowForm }) {
           name="message"
           id="message"
           value={newMessage}
-          placeholder="Tú mensaje (máximo 150 caracteres)"
-          maxLength="150"
+          placeholder="Tú mensaje (máximo 120 caracteres)"
+          maxLength="120"
         ></textarea>
         <p className="form-warnings">{warning}</p>
         <button onClick={sendMessage} className="btn" id="msg-button">

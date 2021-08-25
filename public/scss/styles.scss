@@ -363,6 +363,7 @@ header.web-header::before {
   .home-msg-slider {
     position: relative;
     min-height: 60vh;
+    height: fit-content;
 
     .home-msg-slide {
       position: absolute;
@@ -375,7 +376,7 @@ header.web-header::before {
 
       .home-msg-text {
         font-family: $primary-font;
-        font-size: 2.5em;
+        font-size: 2em;
         font-weight: lighter;
         margin: 0;
         padding: 10px 0 25px 0;
@@ -430,10 +431,11 @@ header.web-header::before {
     min-height: 50vh;
 
     .home-msg-slider {
+      min-height: 65vh;
       .home-msg-slide {
         padding: 15px 40px;
         .home-msg-text {
-          font-size: 3.2em;
+          font-size: 3em;
         }
         .home-msg-author {
           font-size: 1.3em;

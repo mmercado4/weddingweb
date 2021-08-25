@@ -110,6 +110,7 @@ export default function Edit({ id, section, closeEditItem }) {
                 name="edit-message"
                 onChange={handleChange}
                 defaultValue={message}
+                maxLength="120"
               ></textarea>
             </div>
           </Fragment>
