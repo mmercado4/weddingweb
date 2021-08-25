@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import { HOST, APIPORT } from "../../tools/constants";
 import { sanitizeString } from "../../tools/sanitize";
 
-function MessageForm() {
+function MessageForm({ handleShowForm }) {
   const [newMessage, setNewMessage] = useState("");
   const [newAuthor, setNewAuthor] = useState("");
-  const [validationErrors, setValidationErrors] = useState("");
+  const [warning, setWarnings] = useState("");
+  const [animation, setAnimation] = useState("popup");
 
-  const ERROR_LIST = {
+  const WARNING_LIST = {
     API_ERROR: "El mensaje no se ha podido enviar.",
     EMPTY_ERROR: "El mensaje/autor está vacío",
+    REGISTER_SUCCESS: "Gracias por tu mensaje",
   };
 
   const handleChanges = (e) => {
@@ -22,7 +24,7 @@ function MessageForm() {
 
   const sendMessage = () => {
     if (validateMessage()) {
-      setValidationErrors("");
+      setWarnings("");
       let msg = {
         author: sanitizeString(newAuthor),
         message: sanitizeString(newMessage),
@@ -45,8 +47,12 @@ function MessageForm() {
             //refreshMessages(); I don´t refresh messages because it duplicates the interval. Don´t know to solve this.
             setNewAuthor("");
             setNewMessage("");
+            setWarnings(WARNING_LIST.REGISTER_SUCCESS);
+            setTimeout(() => {
+              exitForm();
+            }, 1500);
           } else {
-            setValidationErrors(ERROR_LIST.API_ERROR);
+            setWarnings(WARNING_LIST.API_ERROR);
           }
           //TODO: send email to the couple https://www.npmjs.com/package/email-templates#install
         })
@@ -56,36 +62,48 @@ function MessageForm() {
 
   const validateMessage = () => {
     if (newMessage.length === 0 || newAuthor.length === 0) {
-      setValidationErrors(ERROR_LIST.EMPTY_ERROR);
+      setWarnings(WARNING_LIST.EMPTY_ERROR);
       return false;
     }
     return true;
   };
 
+  const exitForm = () => {
+    setAnimation("popdown");
+    setTimeout(() => {
+      handleShowForm();
+    }, 1000);
+  };
+
   return (
-    <div className="popup-form popup">
-      <input
-        onChange={handleChanges}
-        type="text"
-        name="author"
-        id="author"
-        value={newAuthor}
-        placeholder="Autor"
-        maxLength="30"
-      ></input>
-      <input
-        onChange={handleChanges}
-        type="text"
-        name="message"
-        id="message"
-        value={newMessage}
-        placeholder="Tú mensaje"
-        maxLength="150"
-      ></input>
-      <button onClick={sendMessage} id="msg-button">
-        Enviar
-      </button>
-      <p>{validationErrors}</p>
+    <div className={`popup-form ${animation}`}>
+      <div className="form-fields">
+        <h3>Déjanos tu mensaje</h3>
+        <input
+          onChange={handleChanges}
+          type="text"
+          name="author"
+          id="author"
+          value={newAuthor}
+          placeholder="Autor"
+          maxLength="30"
+        ></input>
+        <textarea
+          onChange={handleChanges}
+          name="message"
+          id="message"
+          value={newMessage}
+          placeholder="Tú mensaje (máximo 150 caracteres)"
+          maxLength="150"
+        ></textarea>
+        <p className="form-warnings">{warning}</p>
+        <button onClick={sendMessage} className="btn" id="msg-button">
+          Enviar
+        </button>
+        <button className="form-exit-btn btn" onClick={exitForm}>
+          <i className="fas fa-times"></i>
+        </button>
+      </div>
     </div>
   );
 }

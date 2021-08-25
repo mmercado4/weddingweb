@@ -111,7 +111,7 @@ function Congratulations() {
         <button className="msg-showform-btn btn" onClick={handleShowForm}>
           Déjanos tu mensaje
         </button>
-        {showForm ? <MessageForm /> : null}
+        {showForm ? <MessageForm handleShowForm={handleShowForm} /> : null}
       </section>
     );
   } else {

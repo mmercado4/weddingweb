@@ -526,6 +526,8 @@ div.arrow {
   }
 }
 
+//Popup forms
+
 .popup-form {
   font-family: $secondary-font;
   position: fixed;
@@ -562,6 +564,15 @@ div.arrow {
       border-bottom: 1px solid black;
     }
 
+    textarea {
+      width: 80%;
+      height: 50px;
+      font-family: $secondary-font;
+      resize: none;
+      margin-top: 15px;
+      border: 1px solid black;
+    }
+
     .bus-input {
       margin: 0 auto;
       margin-top: 15px;
@@ -590,7 +601,7 @@ div.arrow {
   animation: popdown-animation 0.5s ease-in forwards;
 }
 
-.guests-warnings {
+.form-warnings {
   color: red;
   min-height: 20px;
   width: 70%;
@@ -598,7 +609,7 @@ div.arrow {
   margin: 10px auto;
 }
 
-.guests-exit-btn {
+.form-exit-btn {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -616,7 +627,7 @@ div.arrow {
   }
 }
 
-.guests-exit-btn:hover {
+.form-exit-btn:hover {
   background-color: transparent;
 }
 
