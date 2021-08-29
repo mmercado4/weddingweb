@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { HOST, APIPORT } from "../../tools/constants";
 import { sanitizeString } from "../../tools/sanitize";
 
@@ -55,7 +55,7 @@ function Guest(props) {
                 setWarnings(GUEST_WARNINGS.REGISTER_SUCCESS);
                 setTimeout(() => {
                   exitForm();
-                }, 1000);
+                }, 500);
               })
               .catch((error) => console.error(error));
           }
@@ -131,7 +131,7 @@ function Guest(props) {
       <button className="guests-confirm-btn btn" onClick={confirmGuest}>
         Confirmar
       </button>
-      <button className="guests-exit-btn btn" onClick={exitForm}>
+      <button className="form-exit-btn btn" onClick={exitForm}>
         <i className="fas fa-times"></i>
       </button>
     </div>

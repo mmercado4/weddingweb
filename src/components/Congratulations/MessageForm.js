@@ -50,7 +50,7 @@ function MessageForm({ handleShowForm }) {
             setWarnings(WARNING_LIST.REGISTER_SUCCESS);
             setTimeout(() => {
               exitForm();
-            }, 1500);
+            }, 500);
           } else {
             setWarnings(WARNING_LIST.API_ERROR);
           }
