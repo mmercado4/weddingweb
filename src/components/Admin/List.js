@@ -67,21 +67,23 @@ export default function List({
 
   const deleteItem = (e) => {
     const id = e.target.parentNode.name;
-    //TODO: Show confirm message.
-    let deleteUrl = `/api/${section}/${id}`;
-    let opts = {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    fetch(`${HOST}${APIPORT}${deleteUrl}`, opts)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        fetchList();
-      })
-      .catch((error) => console.error(error));
+    let confirmDelete = confirm("¿Estas seguro?");
+    if (confirmDelete) {
+      let deleteUrl = `/api/${section}/${id}`;
+      let opts = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      fetch(`${HOST}${APIPORT}${deleteUrl}`, opts)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          fetchList();
+        })
+        .catch((error) => console.error(error));
+    }
   };
 
   const createListItem = () => {
