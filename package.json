@@ -4,7 +4,7 @@
   "description": "wedding web services",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon node server.js",
+    "start": "node server.js",
     "test": "jest",
     "dev": "nodemon --exec babel-node server.js"
   },
