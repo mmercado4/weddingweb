@@ -20,11 +20,11 @@ body {
 }
 
 h1 {
-  font-size: 3.1em;
+  font-size: 4em;
 }
 
 h2 {
-  font-size: 3em;
+  font-size: 3.8em;
 }
 
 h3 {
@@ -33,11 +33,11 @@ h3 {
 
 @media (min-width: $breakpoint-tablet) {
   h1 {
-    font-size: 5.5em;
+    font-size: 6.5em;
   }
 
   h2 {
-    font-size: 4.5em;
+    font-size: 5.3em;
   }
 
   h3 {
@@ -47,11 +47,11 @@ h3 {
 
 @media (min-width: $breakpoint-laptop) {
   h1 {
-    font-size: 6em;
+    font-size: 7em;
   }
 
   h2 {
-    font-size: 5.5em;
+    font-size: 6em;
   }
 
   h3 {
@@ -376,7 +376,7 @@ header.web-header::before {
 
       .home-msg-text {
         font-family: $primary-font;
-        font-size: 2em;
+        font-size: 3em;
         font-weight: lighter;
         margin: 0;
         padding: 10px 0 25px 0;
@@ -391,6 +391,13 @@ header.web-header::before {
       }
     }
   }
+}
+
+.no-messages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .slide-active {
@@ -435,7 +442,7 @@ header.web-header::before {
       .home-msg-slide {
         padding: 15px 40px;
         .home-msg-text {
-          font-size: 3em;
+          font-size: 4em;
         }
         .home-msg-author {
           font-size: 1.3em;
@@ -447,13 +454,11 @@ header.web-header::before {
 
 @media (min-width: $breakpoint-laptop) {
   .home-msg-section {
-    min-height: 50vh;
-
     .home-msg-slider {
       .home-msg-slide {
         padding: 15px 60px;
         .home-msg-text {
-          font-size: 3.8em;
+          font-size: 4.5em;
         }
         .home-msg-author {
           font-size: 1.5em;
@@ -656,6 +661,11 @@ div.arrow {
 
 @keyframes popup-animation {
   0% {
+    top: 150%;
+    opacity: 0;
+  }
+
+  5% {
     top: 70%;
     opacity: 0;
   }
@@ -671,8 +681,14 @@ div.arrow {
     top: 50%;
     opacity: 100%;
   }
-  100% {
+
+  95% {
     top: 70%;
+    opacity: 0;
+  }
+
+  100% {
+    top: 150%;
     opacity: 0;
   }
 }
@@ -752,7 +768,7 @@ div.arrow {
       justify-content: space-evenly;
 
       h2 {
-        font-size: 3.8em;
+        font-size: 4.5em;
       }
 
       .wedding-state-link {

@@ -24,12 +24,12 @@ function Congratulations() {
       }, 5000);
 
       slideShow.current.addEventListener("mouseenter", () => {
-        console.log("quitamos interval");
+        console.log("interval off");
         clearInterval(interval.current);
       });
 
       slideShow.current.addEventListener("mouseleave", () => {
-        console.log("ponemosinterval");
+        console.log("interval on");
         interval.current = setInterval(() => {
           nextSlide();
         }, 5000);
@@ -62,6 +62,7 @@ function Congratulations() {
   const nextSlide = () => {
     let list = slideShow.current.childNodes;
     let nextIndex;
+    console.log("next slide");
     list.forEach((item, i) => {
       if (item.classList.contains("slide-active")) {
         item.classList.replace("slide-active", "slide-hide");
@@ -117,7 +118,13 @@ function Congratulations() {
   } else {
     return (
       <section className="congratulation">
-        <h2>Envíanos tus mensajes</h2>
+        <div className="home-msg-section no-messages">
+          <h2>Envíanos tus mensajes</h2>
+        </div>
+        <button className="msg-showform-btn btn" onClick={handleShowForm}>
+          Déjanos tu mensaje
+        </button>
+        {showForm ? <MessageForm handleShowForm={handleShowForm} /> : null}
       </section>
     );
   }

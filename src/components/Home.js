@@ -17,7 +17,7 @@ export default function Home() {
           className="marry-img"
         />
         <div className="marry-text">
-          <h2>Nos casamos!</h2>
+          <h2>¡Nos casamos!</h2>
           <p>
             Y queremos que formes parte de este día tan especial para nosotros,
             porque los mejores momentos en la vida siempre hay que compartirlos.
