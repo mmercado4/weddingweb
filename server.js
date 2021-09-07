@@ -1,6 +1,7 @@
 const express = require("express");
 const webpack = require("webpack");
 const webpackDevMiddleware = require("webpack-dev-middleware");
+const webpackHotMiddleware = require("webpack-hot-middleware");
 const webpackConfig = require("./webpack.config");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
@@ -11,6 +12,7 @@ const PORT = process.env.PORT || LOCALPORT;
 const app = express();
 
 app.use(webpackDevMiddleware(webpack(webpackConfig)));
+app.use(webpackHotMiddleware(webpack(webpackConfig)));
 
 app.use(cookieParser());
 
