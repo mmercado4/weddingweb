@@ -20,7 +20,8 @@ body {
 }
 
 h1 {
-  font-size: 4.7em;
+  font-size: 4.8em;
+  line-height: 60px;
 }
 
 h2 {
@@ -373,7 +374,7 @@ header.web-header::before {
 
 .congratulation {
   background-color: $primary-color;
-  min-height: 75vh;
+  min-height: 70vh;
 }
 
 .home-msg-section {
@@ -397,10 +398,11 @@ header.web-header::before {
 
       .home-msg-text {
         font-family: $primary-font;
-        font-size: 3.5em;
+        font-size: 3.1em;
         font-weight: lighter;
         margin: 0;
         padding: 10px 0 25px 0;
+        line-height: 50px;
       }
 
       .home-msg-author {
@@ -450,7 +452,7 @@ header.web-header::before {
 }
 
 .msg-showform-btn {
-  margin: 0 0 25px 0;
+  margin: 0 0 35px 0;
 }
 
 @media (min-width: $breakpoint-tablet) {
@@ -463,6 +465,7 @@ header.web-header::before {
         padding: 15px 40px;
         .home-msg-text {
           font-size: 6em;
+          line-height: 80px;
         }
         .home-msg-author {
           font-size: 1.3em;
@@ -542,6 +545,10 @@ div.arrow {
   height: 30vh;
   padding: 15px;
   margin: 40px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
   h2 {
     margin: 0;
@@ -767,10 +774,6 @@ div.arrow {
     .wedding-state-img {
       flex-basis: 50%;
       width: 50%;
-
-      img {
-        transform: translateY(-40%);
-      }
     }
 
     .wedding-state-text {
@@ -784,6 +787,8 @@ div.arrow {
 
       h2 {
         font-size: 6em;
+        width: 90%;
+        line-height: 80px;
       }
 
       .wedding-state-link {

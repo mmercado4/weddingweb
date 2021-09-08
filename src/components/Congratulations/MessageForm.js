@@ -85,7 +85,7 @@ function MessageForm({ handleShowForm }) {
           name="author"
           id="author"
           value={newAuthor}
-          placeholder="Autor"
+          placeholder="Firma"
           maxLength="30"
         ></input>
         <textarea

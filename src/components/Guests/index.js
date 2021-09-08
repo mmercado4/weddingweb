@@ -10,7 +10,7 @@ function Guests() {
 
   return (
     <section className="guests-section">
-      <h2>Confirmanos tu asistencia</h2>
+      <h2>Confírmanos tu asistencia</h2>
       <button className="guests-form-btn btn" onClick={showForm}>
         Confirma
       </button>{" "}
