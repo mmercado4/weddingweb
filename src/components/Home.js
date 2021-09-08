@@ -11,11 +11,7 @@ export default function Home() {
       <Header />
       <Countdown />
       <section className="marry-section">
-        <img
-          src="./img/marinacarlos2.jpeg"
-          alt="Marina y Carlos"
-          className="marry-img"
-        />
+        <div className="marry-img"></div>
         <div className="marry-text">
           <h2>¡Nos casamos!</h2>
           <p>
@@ -27,9 +23,7 @@ export default function Home() {
       <Guests />
       <Congratulations />
       <section className="wedding-state-section">
-        <div className="wedding-state-img">
-          <img src="./img/railway-min.jpg" alt="Finca la Estación" />
-        </div>
+        <div className="wedding-state-img"></div>
         <div className="wedding-state-text">
           <h2>Nos vemos en La Estación</h2>
           <div>

@@ -12,7 +12,7 @@ export default function Login() {
 
   const LOGIN_WARNINGS = {
     EMPTY_FIELDS: "Usuario/contraseña pendiente",
-    LOGIN_SUCCESS: "Bingo!",
+    LOGIN_SUCCESS: "¡Bingo!",
     LOGIN_NOT_SUCCESS: "Usuario/contraseña incorrecta",
   };
 
@@ -122,9 +122,8 @@ export default function Login() {
               Volver
             </a>
           </div>
-          <p>{warning}</p>
+          <p className="login-warning">{warning}</p>
         </div>
-
         {login ? <Redirect to="admin" /> : null}
       </div>
     </section>

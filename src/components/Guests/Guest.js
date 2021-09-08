@@ -127,7 +127,7 @@ function Guest(props) {
           ></input>
         </div>
       </div>
-      <p className="guests-warnings">{warnings}</p>
+      <p className="form-warnings">{warnings}</p>
       <button className="guests-confirm-btn btn" onClick={confirmGuest}>
         Confirmar
       </button>
