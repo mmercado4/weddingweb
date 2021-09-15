@@ -57,7 +57,7 @@ export default function Login() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(userLogin),
-        //credentials: "include", //Include credentials to create token cookie
+        credentials: "include", //Include credentials to create token cookie
       };
 
       //https://blog.logrocket.com/axios-or-fetch-api/
