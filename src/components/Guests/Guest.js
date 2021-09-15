@@ -6,6 +6,7 @@ function Guest(props) {
   const [guestName, setGuestName] = useState("");
   const [guestSurname, setGuestSurname] = useState("");
   const [guestBus, setGuestBus] = useState(false);
+  const [guestAllergies, setGuestAllergies] = useState("");
   const [warnings, setWarnings] = useState([]);
   const [animation, setAnimation] = useState("popup");
 
@@ -24,7 +25,10 @@ function Guest(props) {
         name: sanitizeString(guestName).trim().toLowerCase(),
         surname: sanitizeString(guestSurname).trim().toLowerCase(),
         bus: guestBus,
+        allergies: sanitizeString(guestAllergies).trim(),
       };
+
+      console.log(newGuest);
 
       let apiUrl = "/api/guests";
 
@@ -49,9 +53,11 @@ function Guest(props) {
               .then((response) => response.json())
               .then((data) => {
                 console.log(data);
-                setGuestSurname("");
-                setGuestName("");
-                setGuestBus(false);
+                // setGuestSurname("");
+                // setGuestName("");
+                // setGuestBus(false);
+                // setGuestAllergies("");
+                // In this state, this set group only modify the React State, not the form.
                 setWarnings(GUEST_WARNINGS.REGISTER_SUCCESS);
                 setTimeout(() => {
                   exitForm();
@@ -96,6 +102,8 @@ function Guest(props) {
       setGuestSurname(e.target.value);
     } else if (e.target.id === "guest-bus") {
       setGuestBus(e.target.checked);
+    } else if (e.target.id === "guest-allergies") {
+      setGuestAllergies(e.target.value);
     }
   };
 
@@ -103,19 +111,28 @@ function Guest(props) {
     <div className={`popup-form ${animation}`}>
       <div className="form-fields">
         <h3>Confirma tu asistencia</h3>
+        <div className="fullname-field">
+          <input
+            onChange={handleChange}
+            type="text"
+            placeholder="Nombre"
+            name="guest-name"
+            id="guest-name"
+          ></input>
+          <input
+            onChange={handleChange}
+            type="text"
+            placeholder="Apellido"
+            name="guest-surname"
+            id="guest-surname"
+          ></input>
+        </div>
         <input
           onChange={handleChange}
           type="text"
-          placeholder="Nombre"
-          name="guest-name"
-          id="guest-name"
-        ></input>
-        <input
-          onChange={handleChange}
-          type="text"
-          placeholder="Apellido"
-          name="guest-surname"
-          id="guest-surname"
+          placeholder="Alergias o intolerancias"
+          name="guest-allergies"
+          id="guest-allergies"
         ></input>
         <div className="bus-input">
           <label htmlFor="guest-bus">¿Te llevamos en autobús?</label>

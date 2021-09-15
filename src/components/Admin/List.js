@@ -92,7 +92,7 @@ export default function List({
       //Check section.
       if (section === "guests") {
         fullList = list.map((item, i) => {
-          let { _id, name, surname, bus } = item;
+          let { _id, name, surname, bus, allergies } = item;
           if (name) {
             //Check if name exists. Section change before list, so message list enter in this if condicional.
             let capName = capitalize(name);
@@ -104,6 +104,7 @@ export default function List({
                   {capName} {capSurname}
                 </td>
                 <td>{bus ? "SI" : "NO"}</td>
+                <td>{allergies}</td>
                 <td>
                   <button name={_id} onClick={editItem}>
                     <i className="fas fa-marker"></i>
@@ -140,7 +141,9 @@ export default function List({
       //Errors or no items.
       fullList = (
         <tr>
-          <td colSpan="4">Ha ocurrido un problema. Prueba más tarde</td>
+          <td colSpan={section === "guests" ? 5 : 4}>
+            Ha ocurrido un problema. Prueba más tarde
+          </td>
         </tr>
       );
     }
@@ -169,6 +172,7 @@ export default function List({
               <th>#</th>
               <th>{section === "messages" ? "Autor" : "Nombre y Apellido"}</th>
               <th>{section === "messages" ? "Mensaje" : "Bus"}</th>
+              {section === "guests" ? <th>Alergias</th> : null}
               <th>Acciones</th>
             </tr>
           </thead>
