@@ -116,7 +116,7 @@ export default function Edit({ id, section, closeEditItem }) {
           </Fragment>
         );
       } else {
-        let { name, surname, bus } = item;
+        let { name, surname, bus, allergies } = item;
         return (
           <Fragment>
             <div className="edit-form-field">
@@ -137,6 +137,16 @@ export default function Edit({ id, section, closeEditItem }) {
                 name="edit-surname"
                 onChange={handleChange}
                 defaultValue={surname}
+              ></input>
+            </div>
+            <div className="edit-form-field">
+              <label htmlFor="edit-allergies">Alergias</label>
+              <input
+                type="text"
+                id="edit-allergies"
+                name="edit-allergies"
+                onChange={handleChange}
+                defaultValue={allergies}
               ></input>
             </div>
             <div className="edit-form-field">

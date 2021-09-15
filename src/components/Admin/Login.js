@@ -115,12 +115,12 @@ export default function Login() {
             value={password}
           ></input>
           <div className="login-buttons">
-            <button className="btn" onClick={handleClick}>
-              Acceder
-            </button>
             <a href="/" className="btn">
               Volver
             </a>
+            <button className="btn" onClick={handleClick}>
+              Acceder
+            </button>
           </div>
           <p className="login-warning">{warning}</p>
         </div>
