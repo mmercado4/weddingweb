@@ -9,6 +9,10 @@
     "build": "webpack",
     "dev": "nodemon --exec babel-node server.js"
   },
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mmercado4/weddingweb.git"
