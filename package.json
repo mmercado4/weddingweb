@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node server.js",
     "test": "jest",
-    "build": "webpack",
     "dev": "nodemon --exec babel-node server.js"
   },
   "engines": {
