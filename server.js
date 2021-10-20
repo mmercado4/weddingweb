@@ -5,9 +5,15 @@ const webpackHotMiddleware = require("webpack-hot-middleware");
 const webpackConfig = require("./webpack.config");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const { LOCALPORT, SEED_AUTH } = require("./src/tools/constants");
+const dotenv = require("dotenv");
+const { LOCALPORT } = require("./src/tools/constants");
 
 const PORT = process.env.PORT || LOCALPORT;
+
+//Config dotenv
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
 
 const app = express();
 
@@ -21,7 +27,7 @@ const auth = (request, response, next) => {
   if (!request.url.includes("/admin")) {
     return next();
   }
-  jwt.verify(request.cookies.token, SEED_AUTH, (error, data) => {
+  jwt.verify(request.cookies.token, process.env.SEED_AUTH, (error, data) => {
     if (error) {
       response.redirect("/login");
     } else {
