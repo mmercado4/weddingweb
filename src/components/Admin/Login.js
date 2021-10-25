@@ -124,7 +124,6 @@ export default function Login() {
           </div>
           <p className="login-warning">{warning}</p>
         </div>
-        <p>{`${HOST}${APIPORT}`} </p>
         {login ? <Redirect to="admin" /> : null}
       </div>
     </section>
