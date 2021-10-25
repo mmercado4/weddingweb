@@ -29,7 +29,7 @@ const auth = (request, response, next) => {
   }
   jwt.verify(request.cookies.token, process.env.SEED_AUTH, (error, data) => {
     if (error) {
-      response.send(error);
+      response.send(request);
       response.redirect("/login");
     } else {
       next();
